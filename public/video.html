@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Renvra Group</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/jyyzoinbne.js" type="module" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .logo {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .logo img {
+      height: 80px;
+      width: auto;
+    }
+    .video-wrap {
+      width: 100%;
+      max-width: 860px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(30, 144, 255, 0.15);
+    }
+    wistia-player[media-id='jyyzoinbne']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/jyyzoinbne/swatch');
+      display: block;
+      filter: blur(5px);
+      padding-top: 56.25%;
+    }
+    wistia-player {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .footer {
+      margin-top: 28px;
+      color: #444;
+      font-size: 13px;
+      text-align: center;
+    }
+    .footer a {
+      color: #1E90FF;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="https://www.renvra-group.com/Renvra_group_full_logo-removebg-preview.png" alt="Renvra Group" />
+  </div>
+  <div class="video-wrap">
+    <wistia-player
+      media-id="jyyzoinbne"
+      aspect="1.7777777777777777"
+      preload="metadata"
+    ></wistia-player>
+  </div>
+  <div class="footer">
+    <a href="https://renvra-group.com">renvra-group.com</a>
+  </div>
+</body>
+</html>
