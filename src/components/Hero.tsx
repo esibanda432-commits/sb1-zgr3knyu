@@ -6,11 +6,15 @@ interface HeroProps {
 
 export default function Hero({ onViewCaseStudies }: HeroProps) {
   return (
-    <section className="relative pt-32 pb-20 bg-white overflow-hidden">
+    <section className="relative pt-20 pb-16 bg-white overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-2 mb-6">
-            <span className="text-sm font-semibold text-blue-700">Done-For-You AI Outreach</span>
+          <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-3 py-1.5 mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            <span className="text-xs font-medium text-gray-600">Done-For-You AI Outreach</span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
