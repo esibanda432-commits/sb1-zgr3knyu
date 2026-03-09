@@ -76,43 +76,17 @@ export default function Home({ onNavigate }: HomeProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Is This The Right Fit For You?
+              Is This Right For You?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We work with businesses ready to scale their sales through qualified appointments
+              Here's how you know
             </p>
           </div>
 
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-red-900 mb-6 text-center">Not A Good Fit If:</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-600 text-xl font-bold">✕</span>
-                    <span className="text-gray-700">You want to do the outreach yourself</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-600 text-xl font-bold">✕</span>
-                    <span className="text-gray-700">Your ACV is under $5,000</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-600 text-xl font-bold">✕</span>
-                    <span className="text-gray-700">You need results in the next 2 weeks</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-600 text-xl font-bold">✕</span>
-                    <span className="text-gray-700">You sell to consumers (B2C)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-600 text-xl font-bold">✕</span>
-                    <span className="text-gray-700">Your ICP is unclear or too broad</span>
-                  </li>
-                </ul>
-              </div>
-
               <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-green-900 mb-6 text-center">Perfect Fit If:</h3>
+                <h3 className="text-2xl font-bold text-green-900 mb-6 text-center">You are a great fit if...</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <span className="text-green-600 text-xl font-bold">✓</span>
@@ -133,6 +107,32 @@ export default function Home({ onNavigate }: HomeProps) {
                   <li className="flex items-start gap-3">
                     <span className="text-green-600 text-xl font-bold">✓</span>
                     <span className="text-gray-700">You want to scale predictably</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-red-900 mb-6 text-center">We are probably not a fit if...</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-600 text-xl font-bold">✕</span>
+                    <span className="text-gray-700">You want to do the outreach yourself</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-600 text-xl font-bold">✕</span>
+                    <span className="text-gray-700">Your ACV is under $5,000</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-600 text-xl font-bold">✕</span>
+                    <span className="text-gray-700">You need results in the next 2 weeks</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-600 text-xl font-bold">✕</span>
+                    <span className="text-gray-700">You sell to consumers (B2C)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-600 text-xl font-bold">✕</span>
+                    <span className="text-gray-700">Your ICP is unclear or too broad</span>
                   </li>
                 </ul>
               </div>
