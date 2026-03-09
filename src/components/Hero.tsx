@@ -19,7 +19,7 @@ export default function Hero({ onViewCaseStudies }: HeroProps) {
           </h1>
 
           <p className="text-xl md:text-2xl mb-12 text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            AI-powered advertising that fills your calendar with ready-to-buy prospects. Show up, close deals, grow your business.
+            AI-powered outreach that fills your calendar with ready-to-buy prospects. Show up, close deals, grow your business.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
