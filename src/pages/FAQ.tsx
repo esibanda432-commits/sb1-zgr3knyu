@@ -147,7 +147,7 @@ export default function FAQ() {
               Book a call with our team to get all your questions answered
             </p>
             <button
-              onClick={() => window.open('https://calendly.com', '_blank')}
+              onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
               className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
             >
               <Calendar size={24} />

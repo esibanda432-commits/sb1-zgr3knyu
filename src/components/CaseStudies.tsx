@@ -69,7 +69,7 @@ export default function CaseStudies() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Real Results From Real Clients
+            What Our Clients Say About Us
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             See how businesses like yours are scaling with qualified appointments
@@ -131,8 +131,8 @@ export default function CaseStudies() {
 
         <div className="text-center mt-12">
           <button
-            onClick={() => window.open('https://calendly.com', '_blank')}
-            className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-10 py-5 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-cyan-600 transition-all hover:scale-105 shadow-xl inline-flex items-center gap-3"
+            onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-blue-700 transition-all hover:scale-105 shadow-xl inline-flex items-center gap-3"
           >
             <Calendar size={24} />
             Get Similar Results

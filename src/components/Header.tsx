@@ -49,7 +49,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
 
           <div className="hidden md:block">
             <button
-              onClick={() => window.open('https://calendly.com', '_blank')}
+              onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
               Book a Call
@@ -84,7 +84,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
                 </button>
               ))}
               <button
-                onClick={() => window.open('https://calendly.com', '_blank')}
+                onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
                 className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors text-center"
               >
                 Book a Call

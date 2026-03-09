@@ -24,10 +24,10 @@ export default function HowItWorks() {
         type: 'metrics',
         title: 'Monthly Report',
         items: [
-          { label: 'New Leads', value: '174' },
-          { label: 'Meetings', value: '89' },
-          { label: 'Closed', value: '50' },
-          { label: 'Follow-ups', value: '78' }
+          { label: 'New Leads', value: '79' },
+          { label: 'Meetings', value: '34' },
+          { label: 'Closed', value: '18' },
+          { label: 'Follow-ups', value: '12' }
         ]
       }
     },
@@ -226,7 +226,7 @@ export default function HowItWorks() {
               Book a call to see how we can generate qualified appointments for your business
             </p>
             <button
-              onClick={() => window.open('https://calendly.com', '_blank')}
+              onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
               className="bg-blue-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all hover:scale-105 shadow-xl inline-flex items-center gap-3"
             >
               <Calendar size={24} />
