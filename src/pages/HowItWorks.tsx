@@ -89,50 +89,50 @@ export default function HowItWorks() {
 
   return (
     <div className="pt-20">
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
               How It Works
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Our proven 5-step system that fills your calendar with qualified appointments
             </p>
           </div>
 
-          <div className="space-y-24">
+          <div className="space-y-20">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="flex items-start gap-6 mb-8">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-xl">
+                <div className="flex items-start gap-5 mb-6">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg">
                     {step.number}
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">{step.title}</h2>
-                    <p className="text-lg text-gray-600 leading-relaxed">{step.description}</p>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-3">{step.title}</h2>
+                    <p className="text-base text-gray-600 leading-relaxed">{step.description}</p>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                  <div className="text-sm font-semibold text-gray-500 mb-6">{step.data.title}</div>
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                  <div className="text-xs font-semibold text-gray-500 mb-5">{step.data.title}</div>
 
                   {step.data.type === 'profile' && (
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {step.data.items.map((item, i) => (
-                        <div key={i} className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
-                          <span className="text-gray-600 font-medium">{item.label}:</span>
-                          <span className="text-gray-900 font-semibold">{item.value}</span>
+                        <div key={i} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
+                          <span className="text-gray-600 font-medium text-sm">{item.label}:</span>
+                          <span className="text-gray-900 font-semibold text-sm">{item.value}</span>
                         </div>
                       ))}
                     </div>
                   )}
 
                   {step.data.type === 'metrics' && (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                       {step.data.items.map((item, i) => (
                         <div key={i} className="text-center">
-                          <div className="text-4xl font-bold text-gray-900 mb-2">{item.value}</div>
-                          <div className="text-sm text-gray-600">{item.label}</div>
+                          <div className="text-3xl font-bold text-gray-900 mb-1">{item.value}</div>
+                          <div className="text-xs text-gray-600">{item.label}</div>
                         </div>
                       ))}
                     </div>
@@ -218,18 +218,18 @@ export default function HowItWorks() {
             ))}
           </div>
 
-          <div className="mt-24 text-center bg-gray-900 rounded-2xl p-12 shadow-xl">
-            <h2 className="text-4xl font-bold mb-4 text-white">
+          <div className="mt-20 text-center bg-gray-900 rounded-2xl p-10 shadow-xl">
+            <h2 className="text-3xl font-bold mb-3 text-white">
               Ready to Scale Your Business?
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
               Book a call to see how we can generate qualified appointments for your business
             </p>
             <button
               onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
-              className="bg-blue-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all hover:scale-105 shadow-xl inline-flex items-center gap-3"
+              className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-blue-700 transition-all hover:scale-105 shadow-xl inline-flex items-center gap-2"
             >
-              <Calendar size={24} />
+              <Calendar size={20} />
               Book a Strategy Call
             </button>
           </div>

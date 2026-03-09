@@ -65,44 +65,44 @@ export default function CaseStudies() {
   const currentStudy = caseStudies[currentIndex];
 
   return (
-    <section id="case-studies" className="py-20 bg-gray-50">
+    <section id="case-studies" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             What Our Clients Say About Us
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             See how businesses like yours are scaling with qualified appointments
           </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 min-h-[400px] flex flex-col justify-center">
-            <div className="flex items-start gap-6 mb-8">
+          <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-10 min-h-[350px] flex flex-col justify-center">
+            <div className="flex items-start gap-5 mb-6">
               <img
                 src={currentStudy.photo}
                 alt={currentStudy.director}
-                className="w-24 h-24 rounded-full object-cover shadow-lg"
+                className="w-20 h-20 rounded-full object-cover shadow-lg"
               />
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">{currentStudy.company}</h3>
-                <p className="text-gray-600 mb-2">{currentStudy.industry}</p>
-                <p className="font-semibold text-gray-900">{currentStudy.director}</p>
-                <p className="text-sm text-gray-500">{currentStudy.role}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{currentStudy.company}</h3>
+                <p className="text-sm text-gray-600 mb-2">{currentStudy.industry}</p>
+                <p className="font-semibold text-gray-900 text-sm">{currentStudy.director}</p>
+                <p className="text-xs text-gray-500">{currentStudy.role}</p>
               </div>
             </div>
 
-            <blockquote className="text-xl text-gray-700 leading-relaxed mb-8">
+            <blockquote className="text-lg text-gray-700 leading-relaxed mb-6">
               "{currentStudy.testimonial}"
             </blockquote>
 
             <div className="flex items-center justify-between">
               <button
                 onClick={goToPrevious}
-                className="p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                className="p-2.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
                 aria-label="Previous testimonial"
               >
-                <ChevronLeft size={24} className="text-gray-700" />
+                <ChevronLeft size={20} className="text-gray-700" />
               </button>
 
               <div className="flex gap-2">
@@ -120,21 +120,21 @@ export default function CaseStudies() {
 
               <button
                 onClick={goToNext}
-                className="p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                className="p-2.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
                 aria-label="Next testimonial"
               >
-                <ChevronRight size={24} className="text-gray-700" />
+                <ChevronRight size={20} className="text-gray-700" />
               </button>
             </div>
           </div>
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-10">
           <button
             onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
-            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-blue-700 transition-all hover:scale-105 shadow-xl inline-flex items-center gap-3"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-xl font-bold text-base hover:from-blue-600 hover:to-blue-700 transition-all hover:scale-105 shadow-xl inline-flex items-center gap-2"
           >
-            <Calendar size={24} />
+            <Calendar size={20} />
             Get Similar Results
           </button>
         </div>

@@ -90,24 +90,24 @@ export default function FAQ() {
 
   return (
     <div className="pt-20">
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-gray-50">
+      <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Frequently Asked Questions
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg text-gray-600">
               Everything you need to know about working with Renvra Group
             </p>
           </div>
 
           {faqs.map((category, catIndex) => (
-            <div key={catIndex} className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <span className="w-2 h-8 bg-blue-600 rounded"></span>
+            <div key={catIndex} className="mb-10">
+              <h2 className="text-xl font-bold text-gray-900 mb-5 flex items-center gap-2">
+                <span className="w-1.5 h-7 bg-blue-600 rounded"></span>
                 {category.category}
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {category.questions.map((faq, qIndex) => {
                   const globalIndex = catIndex * 100 + qIndex;
                   const isOpen = openIndex === globalIndex;
@@ -118,19 +118,19 @@ export default function FAQ() {
                     >
                       <button
                         onClick={() => setOpenIndex(isOpen ? null : globalIndex)}
-                        className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                        className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
                       >
-                        <span className="font-semibold text-gray-900 pr-4">{faq.q}</span>
+                        <span className="font-semibold text-gray-900 pr-4 text-sm">{faq.q}</span>
                         <ChevronDown
                           className={`text-blue-600 flex-shrink-0 transition-transform ${
                             isOpen ? 'rotate-180' : ''
                           }`}
-                          size={24}
+                          size={20}
                         />
                       </button>
                       {isOpen && (
-                        <div className="px-6 pb-5">
-                          <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                        <div className="px-5 pb-4">
+                          <p className="text-gray-600 leading-relaxed text-sm">{faq.a}</p>
                         </div>
                       )}
                     </div>
@@ -140,17 +140,17 @@ export default function FAQ() {
             </div>
           ))}
 
-          <div className="mt-16 bg-blue-600 text-white rounded-2xl p-12 text-center">
-            <MessageCircle className="mx-auto mb-4 text-white" size={48} />
-            <h2 className="text-3xl font-bold mb-4">Still Have Questions?</h2>
-            <p className="text-xl mb-8 opacity-90">
+          <div className="mt-12 bg-blue-600 text-white rounded-2xl p-10 text-center">
+            <MessageCircle className="mx-auto mb-3 text-white" size={40} />
+            <h2 className="text-2xl font-bold mb-3">Still Have Questions?</h2>
+            <p className="text-lg mb-6 opacity-90">
               Book a call with our team to get all your questions answered
             </p>
             <button
               onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+              className="bg-white text-blue-600 px-7 py-3.5 rounded-lg font-semibold text-base hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
             >
-              <Calendar size={24} />
+              <Calendar size={20} />
               Schedule a Call
             </button>
           </div>
