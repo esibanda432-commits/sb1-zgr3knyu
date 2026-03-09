@@ -9,9 +9,12 @@ export default function Hero({ onViewCaseStudies }: HeroProps) {
     <section className="relative pt-32 pb-20 bg-white overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-5xl mx-auto">
+          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-2 mb-6">
+            <span className="text-sm font-semibold text-blue-700">Done-For-You AI Outreach</span>
+          </div>
+
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
-            We Fill Your Pipeline.{' '}
-            <span className="text-blue-600">You Close the Deals.</span>
+            We Fill Your Pipeline. <span className="text-blue-600">You Close The Deals.</span>
           </h1>
 
           <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-3xl mx-auto leading-relaxed">
