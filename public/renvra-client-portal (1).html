@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renvra — Client Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0b0c0f;
+    --surface:  #111318;
+    --surface2: #181b22;
+    --border:   #1f2330;
+    --border2:  #252a38;
+    --cyan:     #00d4d4;
+    --cyan-dim: rgba(0,212,212,0.07);
+    --cyan-mid: rgba(0,212,212,0.18);
+    --text:     #e8eaf0;
+    --muted:    #5a6075;
+    --muted2:   #8a90a8;
+    --green:    #22d98a;
+    --amber:    #f5a623;
+    --blue:     #4f8ef7;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 32px 48px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--cyan); }
+  .header-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ── MAIN ── */
+  .main { max-width: 860px; margin: 0 auto; padding: 48px 40px 80px; }
+
+  /* ── WELCOME ── */
+  .welcome {
+    margin-bottom: 48px;
+  }
+  .welcome-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .welcome h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .welcome p {
+    color: var(--muted2);
+    font-size: 14px;
+    max-width: 520px;
+  }
+
+  /* ── OVERALL PROGRESS ── */
+  .overall-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .overall-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), transparent 70%);
+  }
+  .overall-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .overall-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .overall-pct {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cyan);
+  }
+  .big-track {
+    height: 8px;
+    background: var(--border2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .big-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--cyan), #00f5f5);
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+  }
+  .big-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 20px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
+    border-radius: 4px;
+  }
+
+  /* ── STEPS ── */
+  .steps-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted2);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+  }
+
+  /* vertical connector line */
+  .step:not(:last-child) .step-left::after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: -16px;
+    width: 1px;
+    background: var(--border2);
+    z-index: 0;
+  }
+
+  .step-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 32px;
+    flex-shrink: 0;
+    padding-top: 4px;
+    margin-right: 18px;
+  }
+
+  .step-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 1;
+    position: relative;
+    flex-shrink: 0;
+    border: 2px solid var(--border2);
+    background: var(--surface);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    transition: all 0.3s;
+  }
+  .step-icon.complete {
+    background: rgba(34,217,138,0.12);
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .step-icon.active {
+    background: var(--cyan-dim);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 12px rgba(0,212,212,0.2);
+  }
+  .step-icon.pending {
+    opacity: 0.4;
+  }
+
+  .step-content {
+    flex: 1;
+    padding: 0 0 28px 0;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    padding-top: 4px;
+  }
+
+  .step-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .step-name.pending-text { color: var(--muted2); }
+
+  .step-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .badge-complete { background: rgba(34,217,138,0.12); color: var(--green); }
+  .badge-active   { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,212,212,0.2); }
+  .badge-upcoming { background: var(--surface2); color: var(--muted); }
+
+  .step-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  /* ── WARMUP PROGRESS BLOCK ── */
+  .warmup-block {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 12px;
+  }
+  .warmup-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .warmup-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .warmup-countdown {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cyan);
+  }
+  .warmup-track {
+    height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .warmup-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--cyan), #00f0f0);
+    transition: width 1s;
+  }
+  .warmup-dates {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* ── REPORTS SECTION ── */
+  .reports-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-top: 32px;
+  }
+  .reports-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .reports-card p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .report-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .report-row:last-child { border-bottom: none; }
+  .report-row-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted2);
+    letter-spacing: 0.5px;
+  }
+  .report-row-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+  }
+  .report-row-val.cyan { color: var(--cyan); }
+  .report-row-val.green { color: var(--green); }
+
+  /* ── CONTACT ── */
+  .contact-strip {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: var(--cyan-dim);
+    border: 1px solid var(--cyan-mid);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-strip p {
+    font-size: 13px;
+    color: var(--muted2);
+  }
+  .contact-strip strong { color: var(--text); }
+  .contact-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    text-decoration: none;
+  }
+
+  /* ── EDIT CONTROLS (admin only — hidden from clients) ── */
+  .edit-bar {
+    display: none;
+  }
+  .admin-mode .edit-bar {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 16px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .edit-bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .edit-bar select, .edit-bar input {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 7px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .edit-bar select:focus, .edit-bar input:focus { border-color: var(--cyan); }
+  .edit-bar select option { background: var(--surface2); }
+  .edit-bar .btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    color: var(--muted2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .edit-bar .btn:hover { border-color: var(--cyan); color: var(--cyan); }
+  .edit-bar .btn-primary {
+    background: var(--cyan);
+    color: #000;
+    border-color: var(--cyan);
+    font-weight: 600;
+  }
+  .edit-bar .btn-primary:hover { background: #00f0f0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">RENVRA<span>.</span></div>
+  <div class="header-right">
+    <div id="client-portal-label">Client Portal</div>
+    <div id="portal-date" style="color:var(--muted2)"></div>
+  </div>
+</div>
+
+<div class="main">
+
+
+
+  <!-- EDIT BAR (admin only — visible at ?admin=true) -->
+  <div class="edit-bar">
+    <span class="edit-bar-label">⚙ Update</span>
+    <input type="text" id="e-client" placeholder="Client name" style="width:160px">
+    <input type="text" id="e-company" placeholder="Company" style="width:160px">
+    <select id="e-stage" style="width:180px">
+      <option>Onboarding Call Booked</option>
+      <option>Intake Form Complete</option>
+      <option>Domain Warm-Up</option>
+      <option>System Live</option>
+      <option>Active</option>
+    </select>
+    <input type="date" id="e-warmup" placeholder="Warm-up start">
+    <input type="date" id="e-report" placeholder="Last report">
+    <input type="date" id="e-meeting" placeholder="Last meeting">
+    <button class="btn btn-primary" onclick="applyEdit()">Update Portal</button>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="welcome">
+    <div class="welcome-tag">Client Portal</div>
+    <h1>Welcome, <span id="display-name">Client</span> 👋</h1>
+    <p>Here's a live view of your campaign progress with Renvra. Everything updates as milestones are hit.</p>
+  </div>
+
+  <!-- OVERALL PROGRESS -->
+  <div class="overall-card">
+    <div class="overall-top">
+      <div class="overall-label">Overall Progress</div>
+      <div class="overall-pct" id="overall-pct">0%</div>
+    </div>
+    <div class="big-track">
+      <div class="big-fill" id="big-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps-title">Campaign Milestones</div>
+  <div class="steps-list" id="steps-list"></div>
+
+  <!-- REPORTS -->
+  <div class="reports-card" id="reports-card" style="display:none">
+    <h3>Weekly Reports</h3>
+    <p>Every Friday you receive a performance report covering reply rates, conversations booked, and pipeline generated.</p>
+    <div class="report-row">
+      <span class="report-row-label">FREQUENCY</span>
+      <span class="report-row-val">Every Friday</span>
+    </div>
+    <div class="report-row">
+      <span class="report-row-label">LAST REPORT SENT</span>
+      <span class="report-row-val cyan" id="last-report-display">—</span>
+    </div>
+    <div class="report-row">
+      <span class="report-row-label">NEXT REPORT DUE</span>
+      <span class="report-row-val green" id="next-report-display">—</span>
+    </div>
+    <div class="report-row">
+      <span class="report-row-label">LAST MONTHLY MEETING</span>
+      <span class="report-row-val" id="last-meeting-display">—</span>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-strip">
+    <p>Questions? Reach out any time — <strong>we're here to help.</strong></p>
+    <a href="/cdn-cgi/l/email-protection#1b737e7777745b697e756d697a35787476" class="contact-link"><span class="__cf_email__" data-cfemail="48202d242427083a2d263e3a29662b2725">[email&#160;protected]</span></a>
+  </div>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let state = JSON.parse(localStorage.getItem('renvra_portal') || 'null') || {
+  client: 'Your Name',
+  company: 'Your Company',
+  stage: 'Onboarding Call Booked',
+  warmupStart: null,
+  lastReport: null,
+  lastMeeting: null
+};
+
+// ── STEPS CONFIG ──────────────────────────────────────────────────────────────
+const STEPS = [
+  {
+    key: 'onboarding',
+    name: 'Onboarding Call Booked',
+    desc: 'Your onboarding call has been scheduled. On this call we will map out your ICP, targeting strategy, and messaging approach.',
+    activeDesc: 'Your onboarding call has been scheduled. We look forward to speaking with you.',
+    stages: ['Onboarding Call Booked','Intake Form Complete','Domain Warm-Up','System Live','Active']
+  },
+  {
+    key: 'intake',
+    name: 'Intake Form Complete',
+    desc: 'You have completed the intake form. We now have everything we need to build your campaign.',
+    activeDesc: 'Please complete your intake form so we can begin building your campaign infrastructure.',
+    stages: ['Intake Form Complete','Domain Warm-Up','System Live','Active']
+  },
+  {
+    key: 'warmup',
+    name: 'Domain Warm-Up',
+    desc: 'Your dedicated sending domains are warming up. This critical phase builds inbox reputation over 14 days before any outreach begins.',
+    activeDesc: 'Your domains are actively warming up. No outreach is sent during this period — this protects your deliverability.',
+    stages: ['Domain Warm-Up','System Live','Active'],
+    hasCountdown: true
+  },
+  {
+    key: 'launch',
+    name: 'System Launch',
+    desc: 'Your outreach system is live. Personalised emails are being sent to high-intent prospects on your behalf.',
+    activeDesc: 'Your system has launched. Outreach is live and prospects are being contacted.',
+    stages: ['System Live','Active']
+  },
+  {
+    key: 'reports',
+    name: 'Weekly Reports',
+    desc: 'You receive a performance report every Friday covering reply rates, conversations booked, and pipeline generated.',
+    activeDesc: 'Weekly reports are active. Check your inbox every Friday.',
+    stages: ['Active']
+  },
+  {
+    key: 'meetings',
+    name: 'Monthly Strategy Meetings',
+    desc: 'Monthly check-ins to review campaign performance, adjust strategy, and plan the month ahead.',
+    activeDesc: 'Monthly meetings are scheduled. Your next meeting date will be confirmed via email.',
+    stages: ['Active']
+  }
+];
+
+const STAGE_ORDER = [
+  'Onboarding Call Booked',
+  'Intake Form Complete',
+  'Domain Warm-Up',
+  'System Live',
+  'Active'
+];
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function stageIndex(stage) {
+  return STAGE_ORDER.indexOf(stage);
+}
+
+function progressPct(stage) {
+  const map = {
+    'Onboarding Call Booked': 15,
+    'Intake Form Complete':   30,
+    'Domain Warm-Up':         55,
+    'System Live':            80,
+    'Active':                100
+  };
+  return map[stage] || 0;
+}
+
+function formatDate(d) {
+  if (!d) return '—';
+  return new Date(d).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+}
+
+function nextFriday(fromDate) {
+  const d = fromDate ? new Date(fromDate) : new Date();
+  const day = d.getDay();
+  const daysUntilFriday = (5 - day + 7) % 7 || 7;
+  d.setDate(d.getDate() + daysUntilFriday);
+  return d;
+}
+
+function daysRemaining(warmupStart) {
+  if (!warmupStart) return { days: 14, pct: 0, end: null };
+  const start = new Date(warmupStart);
+  const end   = new Date(start);
+  end.setDate(start.getDate() + 14);
+  const now   = new Date();
+  const total = 14 * 24 * 60 * 60 * 1000;
+  const elapsed = now - start;
+  const pct = Math.min(Math.round((elapsed / total) * 100), 100);
+  const days = Math.max(Math.ceil((end - now) / (1000 * 60 * 60 * 24)), 0);
+  return { days, pct, end };
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render() {
+  // Date
+  document.getElementById('portal-date').textContent =
+    new Date().toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+  // Welcome
+  document.getElementById('display-name').textContent = state.client || 'Client';
+  document.getElementById('client-portal-label').textContent = `${state.company || ''} · Client Portal`;
+
+  // Progress
+  const pct = progressPct(state.stage);
+  document.getElementById('overall-pct').textContent = pct + '%';
+  document.getElementById('big-fill').style.width = pct + '%';
+
+  // Steps
+  const currentIdx = stageIndex(state.stage);
+  const list = document.getElementById('steps-list');
+
+  list.innerHTML = STEPS.map((step, i) => {
+    const stepStageIdx = stageIndex(step.stages[0]);
+    let status;
+    if (currentIdx > stepStageIdx) status = 'complete';
+    else if (currentIdx === stepStageIdx) status = 'active';
+    else status = 'pending';
+
+    const iconHtml = status === 'complete' ? '✓'
+                   : status === 'active'   ? `${i+1}`
+                   : `${i+1}`;
+
+    const badgeHtml = status === 'complete'
+      ? '<span class="step-badge badge-complete">Complete</span>'
+      : status === 'active'
+      ? '<span class="step-badge badge-active">In Progress</span>'
+      : '<span class="step-badge badge-upcoming">Upcoming</span>';
+
+    const desc = status === 'active' ? step.activeDesc : step.desc;
+
+    let extra = '';
+
+    // Warmup countdown
+    if (step.hasCountdown && status === 'active') {
+      const { days, pct: wpct, end } = daysRemaining(state.warmupStart);
+      extra = `
+        <div class="warmup-block">
+          <div class="warmup-top">
+            <span class="warmup-label">Domain Warm-Up Progress</span>
+            <span class="warmup-countdown">${days === 0 ? '✓ Complete' : days + ' days remaining'}</span>
+          </div>
+          <div class="warmup-track">
+            <div class="warmup-fill" style="width:${wpct}%"></div>
+          </div>
+          <div class="warmup-dates">
+            <span>Day 1</span>
+            <span>${wpct}% complete</span>
+            <span>Day 14${end ? ' · ' + formatDate(end) : ''}</span>
+          </div>
+        </div>`;
+    }
+
+    return `
+      <div class="step">
+        <div class="step-left">
+          <div class="step-icon ${status === 'pending' ? 'pending' : status}">${iconHtml}</div>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <div class="step-name ${status === 'pending' ? 'pending-text' : ''}">${step.name}</div>
+            ${badgeHtml}
+          </div>
+          <div class="step-desc">${desc}</div>
+          ${extra}
+        </div>
+      </div>`;
+  }).join('');
+
+  // Reports card
+  const showReports = state.stage === 'Active' || state.stage === 'System Live';
+  const reportsCard = document.getElementById('reports-card');
+  reportsCard.style.display = showReports ? 'block' : 'none';
+
+  if (showReports) {
+    document.getElementById('last-report-display').textContent =
+      state.lastReport ? formatDate(state.lastReport) : 'Not yet sent';
+    document.getElementById('next-report-display').textContent =
+      formatDate(nextFriday(state.lastReport));
+    document.getElementById('last-meeting-display').textContent =
+      state.lastMeeting ? formatDate(state.lastMeeting) : 'Not yet scheduled';
+  }
+}
+
+// ── EDIT CONTROLS ─────────────────────────────────────────────────────────────
+function applyEdit() {
+  const client  = document.getElementById('e-client').value.trim();
+  const company = document.getElementById('e-company').value.trim();
+  const stage   = document.getElementById('e-stage').value;
+  const warmup  = document.getElementById('e-warmup').value;
+  const report  = document.getElementById('e-report').value;
+  const meeting = document.getElementById('e-meeting').value;
+
+  if (client)  state.client  = client;
+  if (company) state.company = company;
+  if (stage)   state.stage   = stage;
+  if (warmup)  state.warmupStart  = warmup;
+  if (report)  state.lastReport   = report;
+  if (meeting) state.lastMeeting  = meeting;
+
+  localStorage.setItem('renvra_portal', JSON.stringify(state));
+  render();
+}
+
+// ── ADMIN MODE ────────────────────────────────────────────────────────────────
+if (new URLSearchParams(window.location.search).get('admin') === 'true') {
+  document.body.classList.add('admin-mode');
+}
+
+// ── INIT ──────────────────────────────�
