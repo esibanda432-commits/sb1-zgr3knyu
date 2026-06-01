@@ -140,7 +140,7 @@ export default function Home({ onNavigate }: HomeProps) {
 
             <div className="text-center mt-10">
               <button
-                onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
+                onClick={() => window.open('https://calendly.com/acquisition-renvra-group/30min?month=2026-06', '_blank')}
                 className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-xl font-bold text-base hover:from-blue-600 hover:to-blue-700 transition-all hover:scale-105 shadow-xl inline-flex items-center gap-2"
               >
                 <Calendar size={20} />
@@ -162,7 +162,7 @@ export default function Home({ onNavigate }: HomeProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
+                onClick={() => window.open('https://calendly.com/acquisition-renvra-group/30min?month=2026-06', '_blank')}
                 className="bg-white text-blue-600 px-7 py-3.5 rounded-lg font-semibold text-base hover:bg-gray-100 transition-colors"
               >
                 Book a Strategy Call
