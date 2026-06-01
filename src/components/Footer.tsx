@@ -32,8 +32,8 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-gray-400">
               <li className="flex items-center gap-2">
                 <Mail size={16} />
-                <a href="mailto:hello@renvragroup.com" className="hover:text-white transition-colors">
-                  hello@renvragroup.com
+                <a href="mailto:contact@renvra-group.com" className="hover:text-white transition-colors">
+                  contact@renvra-group.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -42,15 +42,9 @@ export default function Footer() {
                   UK: 0800 002 5243
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone size={16} />
-                <a href="tel:+17164527454" className="hover:text-white transition-colors">
-                  US: +1 (716) 452-7454
-                </a>
-              </li>
             </ul>
             <div className="flex gap-4 mt-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/company/renvra-group/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>
