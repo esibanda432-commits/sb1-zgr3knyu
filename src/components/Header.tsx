@@ -1,98 +1,20 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
-interface HeaderProps {
-  currentPage: string;
-  onNavigate: (page: string) => void;
-}
-
-export default function Header({ currentPage, onNavigate }: HeaderProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navItems = [
-    { name: 'Home', path: 'home' },
-    { name: 'How It Works', path: 'how-it-works' },
-    { name: 'Process', path: 'process' },
-    { name: 'FAQ', path: 'faq' },
-  ];
-
-  return (
-    <header className="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div
-            className="flex items-center cursor-pointer"
-            onClick={() => onNavigate('home')}
-          >
-            <img
-              src="/Renvra_group_full_logo-removebg-preview.png"
-              alt="Renvra Group"
-              className="h-32 w-auto"
-            />
-          </div>
-
-          <nav className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.path}
-                onClick={() => onNavigate(item.path)}
-                className={`text-sm font-medium transition-colors ${
-                  currentPage === item.path
-                    ? 'text-blue-600'
-                    : 'text-gray-700 hover:text-blue-600'
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
-          </nav>
-
-          <div className="hidden md:block">
-            <button
-              onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
-              className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors"
-            >
-              Book a Call
-            </button>
-          </div>
-
-          <button
-            className="md:hidden text-gray-700"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
-            <nav className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.path}
-                  onClick={() => {
-                    onNavigate(item.path);
-                    setIsMenuOpen(false);
-                  }}
-                  className={`text-left text-sm font-medium ${
-                    currentPage === item.path
-                      ? 'text-blue-600'
-                      : 'text-gray-700'
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ))}
-              <button
-                onClick={() => window.open('https://calendly.com/emmanuel-renvra-group/30min', '_blank')}
-                className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors text-center"
-              >
-                Book a Call
-              </button>
-            </nav>
-          </div>
-        )}
-      </div>
-    </header>
-  );
+export const navItems = [
+  ['Go To Market Systems','/go-to-market-systems'], ['Company Leadership','/leadership'], ['Case Studies','/case-studies'], ['Blog','/blog'], ['About Us','/about'],
+];
+interface HeaderProps { path:string; navigate:(path:string)=>void; }
+export default function Header({path,navigate}:HeaderProps){
+  const [open,setOpen]=useState(false);
+  const go=(href:string)=>{setOpen(false);navigate(href)};
+  return <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[.06] bg-[#0a0b0f]/80 backdrop-blur-xl">
+    <div className="container flex h-[76px] items-center justify-between gap-8">
+      <button onClick={()=>go('/')} aria-label="Renvra Group home"><img src="/Renvra_group_full_logo-removebg-preview.png" alt="Renvra Group" className="h-12 w-auto" /></button>
+      <nav className="hidden lg:flex items-center gap-6">{navItems.map(([label,href])=><button key={href} onClick={()=>go(href)} className={`text-[13px] transition-colors ${path===href?'text-white':'text-[#9aa0ab] hover:text-white'}`}>{label}</button>)}</nav>
+      <button onClick={()=>go('/#contact')} className="hidden sm:inline-flex button-primary py-2.5 px-4 text-[13px]">Talk with our team <ArrowUpRight size={15}/></button>
+      <button className="lg:hidden text-white" onClick={()=>setOpen(!open)} aria-label="Toggle menu">{open?<X/>:<Menu/>}</button>
+    </div>
+    {open&&<div className="lg:hidden border-t border-white/[.06] bg-[#0a0b0f] px-5 py-5"><nav className="container flex flex-col gap-5">{navItems.map(([label,href])=><button key={href} onClick={()=>go(href)} className="text-left text-sm text-[#c7cbd3]">{label}</button>)}<button onClick={()=>go('/#contact')} className="button-primary justify-center">Talk with our team <ArrowUpRight size={15}/></button></nav></div>}
+  </header>;
 }

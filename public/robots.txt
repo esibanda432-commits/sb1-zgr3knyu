@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://renvra-group.com/sitemap.xml

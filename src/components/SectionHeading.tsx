@@ -1,0 +1,2 @@
+interface SectionHeadingProps { eyebrow:string; title:string; body?:string; align?:'left'|'center'; }
+export default function SectionHeading({eyebrow,title,body,align='left'}:SectionHeadingProps){return <div className={`${align==='center'?'text-center mx-auto':''} max-w-2xl`}><p className="eyebrow mb-4">{eyebrow}</p><h2 className="display text-3xl sm:text-4xl md:text-5xl font-bold text-[#f5f6f8]">{title}</h2>{body&&<p className="mt-5 text-base leading-7 muted">{body}</p>}</div>}
