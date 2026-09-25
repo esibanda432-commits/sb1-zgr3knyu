@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowRight, BarChart3, MousePointer2, Plus, Quote, Target } from 'lucide-react';
 import { bookingUrl, faqs, partners, heroAvatars, testimonials, testimonialLinks, featuredTestimonialIndices } from '../data/siteData';
 import SectionHeading from '../components/SectionHeading';
+import NavLink from '../components/NavLink';
 
 interface Props { navigate: (path: string) => void; }
 
@@ -29,7 +30,7 @@ export default function Home({ navigate }: Props) {
             Go To Market Systems <span className="accent-text">For Businesses Ready to Scale</span>
           </h1>
           <p className="reveal mx-auto mt-7 max-w-2xl text-lg leading-8 muted">
-            We create demand, capture intent and convert it into booked revenue, all within one connected system.
+            We create demand, capture intent and convert it into revenue, all within one connected system.
           </p>
           <div className="reveal mt-9">
             <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="button-primary">
@@ -41,7 +42,7 @@ export default function Home({ navigate }: Props) {
 
       {/* SECTION 2 — PARTNER LOGO CAROUSEL */}
       <section className="border-y border-white/[.07] py-14">
-        <p className="mb-9 text-center text-xs uppercase tracking-[.2em] text-[#9aa0ab]">Companies that trust us to drive their revenue</p>
+        <p className="mb-9 text-center text-xs uppercase tracking-[.2em] text-[#9aa0ab]">Some of the businesses we have partnered with</p>
         <div className="logo-marquee">
           {(['top', 'bottom'] as const).map(row => {
             const items = partners.filter(p => p.row === row);
@@ -68,7 +69,7 @@ export default function Home({ navigate }: Props) {
       {/* SECTION 3 — WHAT WE BUILD */}
       <section className="section-space surface-light">
         <div className="container">
-          <SectionHeading eyebrow="What We Build" title="One System. Deployed to convert sales opportunities into revenue." body="We create demand, capture intent and convert it into booked revenue, all within one connected system." />
+          <SectionHeading eyebrow="What We Build" title="One System. Deployed to convert sales opportunities into revenue." body="We create demand, capture intent and convert it into revenue, all within one connected system." />
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {[
               [Target, '01', 'Create Demand', 'Reach the right people through a considered mix of channels.'],
@@ -85,9 +86,9 @@ export default function Home({ navigate }: Props) {
               </div>
             ))}
           </div>
-          <button onClick={() => navigate('/go-to-market-systems')} className="button-ghost mt-8">
+          <NavLink href="/go-to-market-systems" navigate={navigate} className="button-ghost mt-8">
             Explore our Go To Market System <ArrowRight size={16} />
-          </button>
+          </NavLink>
         </div>
       </section>
 
@@ -116,9 +117,9 @@ export default function Home({ navigate }: Props) {
             })}
           </div>
           <div className="mt-10 text-center">
-            <button onClick={() => navigate('/case-studies')} className="button-ghost">
+            <NavLink href="/case-studies" navigate={navigate} className="button-ghost">
               View All Case Studies <ArrowRight size={16} />
-            </button>
+            </NavLink>
           </div>
         </div>
       </section>

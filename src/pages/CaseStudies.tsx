@@ -32,7 +32,21 @@ function CountUp({ target, durationMs = 1400 }: { target: number; durationMs?: n
   return <span ref={ref}>{val}</span>;
 }
 
+// Lead names are loaded at runtime from /private/, which robots.txt blocks,
+// so search engines never see them (they are not in the page HTML or JS bundle).
+function useLeadNames() {
+  const [names, setNames] = useState<Record<string, string>>({});
+  useEffect(() => {
+    fetch('/private/case-study-leads.json')
+      .then(r => (r.ok ? r.json() : {}))
+      .then(setNames)
+      .catch(() => {});
+  }, []);
+  return names;
+}
+
 export default function CaseStudies() {
+  const leads = useLeadNames();
   return (
     <div className="pt-[88px]">
       <section className="section-space pb-14">
@@ -76,7 +90,10 @@ export default function CaseStudies() {
               <div>
                 <p className="eyebrow mb-3">{c.industry}</p>
                 <h2 className="display text-3xl font-bold sm:text-4xl">{c.name}</h2>
-                <p className="mt-2 text-sm muted">{c.role}</p>
+                <p className="mt-2 text-sm muted">
+                  {leads[c.id] && <span data-nosnippet className="font-semibold text-[var(--text)]">{leads[c.id]}, </span>}
+                  {c.role}
+                </p>
               </div>
 
               <div className="grid gap-8 md:grid-cols-3 mt-8">
@@ -88,6 +105,9 @@ export default function CaseStudies() {
               <div className="mt-10 border-t border-[var(--line)] pt-8">
                 <Quote className="mb-4 accent-text" size={22} />
                 <p className="max-w-3xl text-xl leading-8">"{c.quote}"</p>
+                <p className="mt-4 text-sm muted">
+                  {leads[c.id] && <span data-nosnippet>{leads[c.id]}, </span>}{c.role}, {c.name}
+                </p>
               </div>
             </article>
           );

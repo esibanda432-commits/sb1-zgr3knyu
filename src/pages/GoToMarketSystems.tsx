@@ -19,8 +19,6 @@ const layers = [
   },
 ];
 
-const chartBars = [20, 40, 31, 60, 48, 72, 64, 91, 78, 100];
-
 export default function GoToMarketSystems() {
   return (
     <div className="pt-[88px]">
@@ -31,7 +29,7 @@ export default function GoToMarketSystems() {
             One System. Deployed to convert sales opportunities into revenue.
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 muted">
-            We create demand, capture intent and convert it into booked revenue, all within one connected system.
+            We create demand, capture intent and convert it into revenue, all within one connected system.
           </p>
         </div>
       </section>
@@ -60,38 +58,6 @@ export default function GoToMarketSystems() {
                 </div>
 
                 {i === 0 && <p className="mt-8 text-sm font-medium accent-text">We cover every channel so your ideal client doesn't miss you.</p>}
-
-                {i === 2 && (
-                  <div className="mt-10 overflow-hidden rounded-xl border border-black/10 bg-[#0b0d12] text-[#f5f6f8] shadow-xl">
-                    <div className="flex items-center gap-2 border-b border-white/[.08] px-4 py-3">
-                      <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
-                      <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
-                      <span className="h-2 w-2 rounded-full bg-[#28c840]" />
-                      <span className="ml-3 text-[10px] text-[#697384]">revenue-dashboard / overview</span>
-                    </div>
-                    <div className="grid gap-4 p-5 sm:grid-cols-3">
-                      <div className="h-28 rounded-lg bg-[#141923] p-4">
-                        <p className="text-[10px] text-[#697384]">PIPELINE VALUE</p>
-                        <p className="mt-4 text-2xl font-semibold">£284,600</p>
-                      </div>
-                      <div className="h-28 rounded-lg bg-[#141923] p-4">
-                        <p className="text-[10px] text-[#697384]">OPEN OPPORTUNITIES</p>
-                        <p className="mt-4 text-2xl font-semibold text-[#3a9ec4]">48</p>
-                      </div>
-                      <div className="h-28 rounded-lg bg-[#141923] p-4">
-                        <p className="text-[10px] text-[#697384]">CONVERSION</p>
-                        <p className="mt-4 text-2xl font-semibold text-[#74d6a0]">32.4%</p>
-                      </div>
-                    </div>
-                    <div className="mx-5 mb-5 h-24 rounded-lg bg-gradient-to-t from-[#153040] to-transparent p-4">
-                      <div className="flex h-full items-end gap-2">
-                        {chartBars.map((h, j) => (
-                          <div key={j} className="flex-1 rounded-t accent-bg opacity-80" style={{ height: `${h}%` }} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {i < 2 && (

@@ -16,6 +16,7 @@ export const partners: Partner[] = [
   { name: 'Boiler Install 4 You', logo: '/logos/boiler-install-4-you.png', height: 36, row: 'bottom' },
   { name: 'WRT', logo: '/logos/wrt.png', height: 54, row: 'bottom' },
   { name: 'Swift Heat', logo: '/logos/swift-heat.png', height: 42, row: 'bottom' },
+  { name: 'The Cancer Conversation', logo: '/logos/the-cancer-conversation.png', height: 54, row: 'bottom' },
 ];
 
 export const heroAvatars = [

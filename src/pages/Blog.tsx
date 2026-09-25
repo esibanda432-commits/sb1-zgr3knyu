@@ -1,6 +1,7 @@
 import { ArrowRight, Clock } from 'lucide-react';
 import { useState } from 'react';
 import { posts } from '../data/siteData';
+import NavLink from '../components/NavLink';
 
 interface Props { navigate: (path: string) => void; }
 
@@ -13,7 +14,7 @@ export default function Blog({ navigate }: Props) {
       <section className="section-space pb-12">
         <div className="container">
           <p className="eyebrow mb-5">Ideas for better growth</p>
-          <h1 className="display text-5xl font-bold sm:text-6xl">Blog</h1>
+          <h1 className="display text-5xl font-bold sm:text-6xl">Blogs &amp; Articles</h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 muted">Practical thinking for businesses building better routes to market, better customer journeys and more useful systems.</p>
           <div className="mt-10 flex gap-2">
             {['All', 'B2B', 'B2C'].map(item => (
@@ -41,9 +42,9 @@ export default function Blog({ navigate }: Props) {
               </div>
               <h2 className="mt-5 text-xl font-semibold leading-8 group-hover:accent-text">{post.title}</h2>
               <p className="mt-3 text-sm leading-7 muted">{post.excerpt}</p>
-              <button onClick={() => navigate(`/blog/${post.slug}`)} className="mt-7 inline-flex items-center gap-2 text-sm font-semibold accent-text">
+              <NavLink href={`/blog/${post.slug}`} navigate={navigate} className="mt-7 inline-flex items-center gap-2 text-sm font-semibold accent-text">
                 Read article <ArrowRight size={15} />
-              </button>
+              </NavLink>
             </div>
           </article>
         ))}

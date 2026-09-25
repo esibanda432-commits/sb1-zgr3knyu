@@ -10,7 +10,7 @@ const routes = [
   { path: '/go-to-market-systems', title: 'Go To Market Systems | Renvra Group', description: 'One connected system to create demand, capture intent and convert opportunities into revenue.' },
   { path: '/leadership', title: 'Company Leadership | Renvra Group', description: 'Meet the leadership behind Renvra Group.' },
   { path: '/case-studies', title: 'Case Studies | Renvra Group', description: 'See how Renvra Group builds systems for better conversations and stronger pipelines.' },
-  { path: '/blog', title: 'Blog | Renvra Group', description: 'Practical thinking for businesses building better routes to market.' },
+  { path: '/blog', title: 'Blogs & Articles | Renvra Group', description: 'Practical thinking for businesses building better routes to market.' },
   { path: '/about', title: 'About Us | Renvra Group', description: 'Learn about Renvra Group and our approach to building dependable growth systems.' },
 ];
 
@@ -23,11 +23,38 @@ const blogPosts = [
   { slug: 'building-trust-before-the-first-conversation', title: 'Building trust before the first conversation' },
 ];
 
+const NAV = [
+  ['Go To Market Systems', '/go-to-market-systems'],
+  ['Company Leadership', '/leadership'],
+  ['Case Studies', '/case-studies'],
+  ['Blogs & Articles', '/blog'],
+  ['About Us', '/about'],
+];
+const H1 = {
+  '/': 'Go To Market Systems For Businesses Ready to Scale',
+  '/go-to-market-systems': 'One System. Deployed to convert sales opportunities into revenue.',
+  '/leadership': 'Company Leadership',
+  '/case-studies': 'Case Studies',
+  '/blog': 'Blogs & Articles',
+  '/about': 'About Renvra Group',
+};
+const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// Static outline of the page (site navigation, heading, summary) placed inside #root.
+// Crawlers see real links and headings in the raw HTML; React replaces it on load.
+function staticShell(route) {
+  const heading = H1[route.path] || route.title.split(' | ')[0];
+  const links = NAV.map(([label, href]) => `<a href="${href}">${esc(label)}</a>`).join('');
+  return `<div class="prerender-shell" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">`
+    + `<header><a href="/">Renvra Group</a><nav aria-label="Main">${links}</nav></header>`
+    + `<main><h1>${esc(heading)}</h1><p>${esc(route.description)}</p></main></div>`;
+}
+
 function generatePage(route) {
   let html = template;
   const url = SITE_URL + route.path;
 
-  html = html.replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`);
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(route.title)}</title>`);
   html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${route.description}$2`);
   html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/, `$1${route.title}$2`);
   html = html.replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/, `$1${route.description}$2`);
@@ -39,7 +66,7 @@ function generatePage(route) {
   const navSchema = {
     '@context': 'https://schema.org',
     '@type': 'SiteNavigationElement',
-    name: ['Go To Market Systems', 'Company Leadership', 'Case Studies', 'Blog', 'About Us'],
+    name: ['Go To Market Systems', 'Company Leadership', 'Case Studies', 'Blogs & Articles', 'About Us'],
     url: [
       `${SITE_URL}/go-to-market-systems`,
       `${SITE_URL}/leadership`,
@@ -69,6 +96,8 @@ function generatePage(route) {
   const pageSchemas = [navSchema];
   if (route.path !== '/') pageSchemas.push(breadcrumbSchema);
   html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(pageSchemas)}</script>\n  </head>`);
+
+  html = html.replace('<div id="root"></div>', `<div id="root">${staticShell(route)}</div>`);
 
   return html;
 }

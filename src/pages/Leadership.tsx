@@ -12,25 +12,11 @@ const principles = [
 export default function Leadership() {
   return (
     <div className="pt-[88px]">
-      {/* Intro + vision (dark) */}
-      <section className="section-space relative overflow-hidden">
-        <div className="container relative">
+      {/* Page title (dark) */}
+      <section className="pb-14 pt-20 sm:pt-24">
+        <div className="container">
           <p className="eyebrow mb-5">Leadership</p>
           <h1 className="display text-5xl font-bold sm:text-6xl">Company Leadership</h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 muted">
-            Renvra Group is founder-led. The standards of structure and accountability that shaped our founder's career are the same standards behind every system we deploy.
-          </p>
-
-          <div className="mt-20 grid gap-10 border-t border-[var(--line)] pt-14 md:grid-cols-[.9fr_1.1fr]">
-            <div>
-              <p className="eyebrow mb-4">Our vision</p>
-              <h2 className="display text-3xl font-bold sm:text-4xl">Growth should run like a system, not a series of experiments.</h2>
-            </div>
-            <div className="space-y-5 text-base leading-8 muted">
-              <p>Too many businesses rely on referrals, one-off campaigns and channels that operate in isolation. The result is a pipeline that rises and falls without warning.</p>
-              <p>Our vision is to replace that uncertainty with one connected system: predictable, measurable and built to scale, so leaders can plan growth with confidence.</p>
-            </div>
-          </div>
         </div>
       </section>
 

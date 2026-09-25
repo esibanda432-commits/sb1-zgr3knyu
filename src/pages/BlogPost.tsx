@@ -11,7 +11,7 @@ export default function BlogPost({ slug, navigate }: Props) {
       <article className="section-space">
         <div className="container max-w-3xl">
           <button onClick={() => navigate('/blog')} className="mb-12 inline-flex items-center gap-2 text-sm accent-text">
-            <ArrowLeft size={15} /> Back to Blog
+            <ArrowLeft size={15} /> Back to Blogs &amp; Articles
           </button>
           <span className="rounded-full border border-[var(--accent)]/40 bg-[var(--accent)]/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider accent-text">{post.category}</span>
           <h1 className="display mt-6 text-5xl font-bold sm:text-6xl">{post.title}</h1>

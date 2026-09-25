@@ -1,5 +1,6 @@
 import { Linkedin } from 'lucide-react';
 import { navItems } from './Header';
+import NavLink from './NavLink';
 
 interface FooterProps { navigate: (path: string) => void; }
 
@@ -16,7 +17,7 @@ export default function Footer({ navigate }: FooterProps) {
             <p className="eyebrow mb-5">Explore</p>
             <div className="grid gap-3">
               {navItems.map(([label, href]) => (
-                <button key={href} onClick={() => navigate(href)} className="text-left text-sm text-[#b0b5bf] hover:text-white transition-colors">{label}</button>
+                <NavLink key={href} href={href} navigate={navigate} className="text-left text-sm text-[#b0b5bf] hover:text-white transition-colors">{label}</NavLink>
               ))}
             </div>
           </div>
