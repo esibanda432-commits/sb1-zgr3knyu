@@ -43,14 +43,15 @@ export default function CaseStudies() {
         </div>
       </section>
 
-      <section className="container space-y-8 pb-28">
+      <section className="surface-light py-20 sm:py-24">
+        <div className="container space-y-8">
         {caseStudies.map(c => {
           const Icon = iconMap[c.icon] || Calendar;
           const maxDays = 32;
           return (
             <article id={c.id} key={c.id} className="scroll-mt-28 panel p-7 sm:p-10">
               {/* Result creative */}
-              <div className="relative overflow-hidden rounded-2xl border border-white/[.1] bg-[#0f1419] p-7 sm:p-10 mb-10" style={{ boxShadow: '0 0 40px rgba(40,128,164,.08)' }}>
+              <div className="surface-dark relative mb-10 overflow-hidden rounded-2xl bg-[#0f1419] p-7 sm:p-10">
                 <div className="glow -right-32 -top-24 h-72 w-72" />
                 <div className="relative flex flex-col items-center gap-8 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-5">
@@ -84,20 +85,20 @@ export default function CaseStudies() {
                 <Info title="The Results" text={c.results} />
               </div>
 
-              <div className="mt-10 border-t border-white/[.08] pt-8">
-                <Quote className="mb-4 text-[#3a6a82]" size={22} />
-                <p className="max-w-3xl text-xl leading-8 text-[#e6e8ec]">"{c.quote}"</p>
+              <div className="mt-10 border-t border-[var(--line)] pt-8">
+                <Quote className="mb-4 accent-text" size={22} />
+                <p className="max-w-3xl text-xl leading-8">"{c.quote}"</p>
               </div>
             </article>
           );
         })}
+        </div>
+        <div className="container pt-16 text-center">
+          <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="button-primary">
+            Discuss Your Project <ArrowRight size={17} />
+          </a>
+        </div>
       </section>
-
-      <div className="container pb-24 text-center">
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="button-primary">
-          Discuss Your Project <ArrowRight size={17} />
-        </a>
-      </div>
     </div>
   );
 }
@@ -105,7 +106,7 @@ export default function CaseStudies() {
 function Info({ title, text }: { title: string; text: string }) {
   return (
     <div>
-      <h3 className="mb-3 text-sm font-semibold text-[#f5f6f8]">{title}</h3>
+      <h3 className="mb-3 text-sm font-semibold">{title}</h3>
       <p className="text-sm leading-7 muted">{text}</p>
     </div>
   );

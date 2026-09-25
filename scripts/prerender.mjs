@@ -6,7 +6,7 @@ const distDir = join(process.cwd(), 'dist');
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8');
 
 const routes = [
-  { path: '/', title: 'Renvra Group | Go To Market Systems For Businesses Ready to Scale', description: 'Renvra Group designs and deploys go-to-market systems for businesses ready to scale.' },
+  { path: '/', title: 'Renvra Group | GTM Systems, Automation & Lead Generation', description: 'Renvra Group builds Go-To-Market systems that generate demand, capture intent and convert it into booked revenue. Deployed within 14 days.' },
   { path: '/go-to-market-systems', title: 'Go To Market Systems | Renvra Group', description: 'One connected system to create demand, capture intent and convert opportunities into revenue.' },
   { path: '/leadership', title: 'Company Leadership | Renvra Group', description: 'Meet the leadership behind Renvra Group.' },
   { path: '/case-studies', title: 'Case Studies | Renvra Group', description: 'See how Renvra Group builds systems for better conversations and stronger pipelines.' },
@@ -49,18 +49,6 @@ function generatePage(route) {
     ],
   };
 
-  let schemas = [navSchema];
-  if (route.path === '/') {
-    schemas.unshift({
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'Renvra Group',
-      url: SITE_URL,
-      logo: `${SITE_URL}/Renvra_group_full_logo-removebg-preview.png`,
-      sameAs: ['https://www.linkedin.com/'],
-    });
-  }
-
   const crumbs = [{ name: 'Home', url: SITE_URL }];
   if (route.path !== '/') {
     const label = route.title.split(' | ')[0];
@@ -77,8 +65,10 @@ function generatePage(route) {
     })),
   };
 
-  html = html.replace(/<script\s+id="structured-data"[^>]*>[^<]*<\/script>/, `<script id="structured-data" type="application/ld+json">${JSON.stringify(schemas)}</script>`);
-  html = html.replace(/<script\s+id="breadcrumb-data"[^>]*>[^<]*<\/script>/, `<script id="breadcrumb-data" type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`);
+  // Organization + WebSite schema is already in index.html; add navigation and breadcrumbs per page.
+  const pageSchemas = [navSchema];
+  if (route.path !== '/') pageSchemas.push(breadcrumbSchema);
+  html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(pageSchemas)}</script>\n  </head>`);
 
   return html;
 }

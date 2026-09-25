@@ -19,8 +19,8 @@ export default function Header({ path, navigate }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[.06] bg-[#0a0b0f]/80 backdrop-blur-xl">
       <div className="container flex h-[88px] items-center justify-between gap-8">
-        <button onClick={() => go('/')} aria-label="Renvra Group home">
-          <img src="/Renvra_group_full_logo-removebg-preview.png" alt="Renvra Group" className="h-[52px] w-auto max-w-none" />
+        <button onClick={() => go('/')} aria-label="Renvra Group home" className="shrink-0">
+          <img src="/Renvra_group_logo_trimmed.png" alt="Renvra Group" className="h-[44px] sm:h-[58px] w-auto max-w-none" />
         </button>
         <nav className="hidden lg:flex items-center gap-6">
           {navItems.map(([label, href]) => (

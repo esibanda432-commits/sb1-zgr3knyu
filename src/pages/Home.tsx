@@ -1,11 +1,13 @@
-import { ArrowRight, BarChart3, ChevronDown, MousePointer2, Plus, Quote, Target } from 'lucide-react';
-import { bookingUrl, faqs, partnerLogos, heroAvatars, testimonials, testimonialLinks, featuredTestimonialIndices } from '../data/siteData';
+import { useState } from 'react';
+import { ArrowRight, BarChart3, MousePointer2, Plus, Quote, Target } from 'lucide-react';
+import { bookingUrl, faqs, partners, heroAvatars, testimonials, testimonialLinks, featuredTestimonialIndices } from '../data/siteData';
 import SectionHeading from '../components/SectionHeading';
 
 interface Props { navigate: (path: string) => void; }
 
 export default function Home({ navigate }: Props) {
   const featured = featuredTestimonialIndices.map(i => testimonials[i]);
+  const [openFaq, setOpenFaq] = useState(0);
 
   return (
     <div className="pt-[88px]">
@@ -17,11 +19,11 @@ export default function Home({ navigate }: Props) {
             <div className="flex items-center">
               {heroAvatars.map((src, i) => (
                 <img key={i} src={src} alt="" loading="lazy"
-                  className="h-7 w-7 rounded-full object-cover border-2 border-[#0a0b0f]"
-                  style={{ marginLeft: i === 0 ? 0 : '-10px' }} />
+                  className="relative h-7 w-7 rounded-full object-cover border-2 border-[#0a0b0f]"
+                  style={{ marginLeft: i === 0 ? 0 : '-17px', zIndex: heroAvatars.length - i }} />
               ))}
             </div>
-            <span className="ml-1">100+ Businesses Served</span>
+            <span>100+ Businesses Served</span>
           </div>
           <h1 className="display reveal mx-auto max-w-5xl text-5xl font-bold sm:text-6xl md:text-8xl">
             Go To Market Systems <span className="accent-text">For Businesses Ready to Scale</span>
@@ -38,21 +40,33 @@ export default function Home({ navigate }: Props) {
       </section>
 
       {/* SECTION 2 — PARTNER LOGO CAROUSEL */}
-      <section className="border-y border-white/[.07] py-10">
-        <p className="mb-7 text-center text-xs uppercase tracking-[.2em] text-[#9aa0ab]">Companies that trust us to drive their revenue</p>
-        <div className="relative overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-gradient-to-r before:from-[#0a0b0f] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-gradient-to-l after:from-[#0a0b0f] after:to-transparent">
-          <div className="flex w-max animate-[marquee_24s_linear_infinite] items-center gap-12">
-            {partnerLogos.map((logo, i) => (
-              <img key={`${logo.alt}-${i}`} src={logo.src} alt={logo.alt} loading="lazy"
-                className={`h-10 w-auto max-w-[180px] object-contain ${logo.treatment === 'dark-background' ? 'partner-logo-dark-background' : 'partner-logo-light-background'}`} />
-            ))}
-            <style>{'@keyframes marquee{to{transform:translateX(-50%)}}'}</style>
-          </div>
+      <section className="border-y border-white/[.07] py-14">
+        <p className="mb-9 text-center text-xs uppercase tracking-[.2em] text-[#9aa0ab]">Companies that trust us to drive their revenue</p>
+        <div className="logo-marquee">
+          {(['top', 'bottom'] as const).map(row => {
+            const items = partners.filter(p => p.row === row);
+            return (
+              <div key={row} className={`logo-marquee-row ${row === 'bottom' ? 'is-reverse' : ''}`}>
+                <div className="logo-marquee-track">
+                  {[...items, ...items].map((p, i) => (
+                    <div key={`${p.name}-${i}`} className="logo-marquee-item" aria-hidden={i >= items.length ? true : undefined}>
+                      <div className="logo-tile">
+                        <img src={p.logo} alt={i >= items.length ? '' : p.name} loading="lazy" draggable={false}
+                          style={{ height: p.height }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+          <div className="logo-marquee-blur is-left" aria-hidden="true" />
+          <div className="logo-marquee-blur is-right" aria-hidden="true" />
         </div>
       </section>
 
       {/* SECTION 3 — WHAT WE BUILD */}
-      <section className="section-space">
+      <section className="section-space surface-light">
         <div className="container">
           <SectionHeading eyebrow="What We Build" title="One System. Deployed to convert sales opportunities into revenue." body="We create demand, capture intent and convert it into booked revenue, all within one connected system." />
           <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -64,7 +78,7 @@ export default function Home({ navigate }: Props) {
               <div className="panel p-7 transition-transform hover:-translate-y-1" key={num as string}>
                 <div className="mb-8 flex items-center justify-between">
                   <div className="icon-box"><Icon size={19} /></div>
-                  <span className="text-xs text-[#626a78]">{num as string}</span>
+                  <span className="text-xs muted">{num as string}</span>
                 </div>
                 <h3 className="text-xl font-semibold">{title as string}</h3>
                 <p className="mt-3 text-sm leading-7 muted">{body as string}</p>
@@ -78,7 +92,7 @@ export default function Home({ navigate }: Props) {
       </section>
 
       {/* SECTION 4 — FEATURED CASE STUDIES */}
-      <section className="section-space bg-[#0d0f14]">
+      <section className="section-space surface-dark-2">
         <div className="container">
           <SectionHeading eyebrow="Case Studies" title="Feedback From Client Work" />
           <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -86,6 +100,7 @@ export default function Home({ navigate }: Props) {
               const actualIndex = featuredTestimonialIndices[fi];
               return (
                 <a key={company} href={`/case-studies#${testimonialLinks[actualIndex]}`}
+                  onClick={e => { e.preventDefault(); navigate(`/case-studies#${testimonialLinks[actualIndex]}`); }}
                   className="panel group p-7 transition-all hover:-translate-y-1 accent-hover-border flex flex-col">
                   <Quote className="mb-6 text-[#3a6a82]" size={23} />
                   <p className="flex-1 text-base leading-7 text-[#e7e9ed]">"{quote}"</p>
@@ -109,25 +124,13 @@ export default function Home({ navigate }: Props) {
       </section>
 
       {/* SECTION 5 — FAQs */}
-      <section className="section-space">
+      <section className="section-space surface-light">
         <div className="container max-w-3xl">
           <SectionHeading align="center" eyebrow="FAQs" title="Frequently Asked Questions" />
-          <div className="mt-12 divide-y divide-white/[.1] border-y border-white/[.1]">
-            {faqs.map(([q, a], i) => <Faq key={q} q={q} a={a} open={i === 0} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 6 — FINAL CTA */}
-      <section className="container pb-24">
-        <div className="relative overflow-hidden rounded-3xl border border-white/[.1] bg-[#0f1820] px-7 py-16 text-center">
-          <div className="glow -right-40 -top-52 h-96 w-96" />
-          <div className="relative">
-            <p className="eyebrow mb-4">Ready to scale?</p>
-            <h2 className="display text-4xl font-bold sm:text-5xl">Build a better route to revenue.</h2>
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="button-primary mt-8">
-              Discuss Your Project <ArrowRight size={17} />
-            </a>
+          <div className="mt-12 border-t border-[var(--line)]">
+            {faqs.map(([q, a], i) => (
+              <Faq key={q} q={q} a={a} open={openFaq === i} onToggle={() => setOpenFaq(openFaq === i ? -1 : i)} />
+            ))}
           </div>
         </div>
       </section>
@@ -135,17 +138,14 @@ export default function Home({ navigate }: Props) {
   );
 }
 
-function Faq({ q, a, open }: { q: string; a: string; open: boolean }) {
+function Faq({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
   return (
-    <details open={open} className="group py-5">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-semibold">
-        {q}
-        <span className="icon-box h-7 w-7 shrink-0">
-          <Plus size={16} className="group-open:hidden" />
-          <ChevronDown size={16} className="hidden group-open:block" />
-        </span>
-      </summary>
-      <p className="max-w-2xl pt-4 text-sm leading-7 muted">{a}</p>
-    </details>
+    <div className={`faq-item ${open ? 'is-open' : ''}`}>
+      <button className="faq-q" onClick={onToggle} aria-expanded={open}>
+        <span>{q}</span>
+        <span className="icon-box" aria-hidden="true"><Plus size={16} /></span>
+      </button>
+      <div className="faq-a"><div><p>{a}</p></div></div>
+    </div>
   );
 }

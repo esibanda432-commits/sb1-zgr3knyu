@@ -1,21 +1,21 @@
 export const bookingUrl = 'https://calendly.com/acquisition-renvra-group/30min';
 
-const partnerLogoList = [
-  { src: '/call_cafe_logo.jpg', alt: 'Call Cafe', treatment: 'dark-background' },
-  { src: '/WRT_logo.png', alt: 'WRT', treatment: 'light-background' },
-  { src: '/prism_data_logo.png', alt: 'Prism Data', treatment: 'light-background' },
-  { src: '/boiler_installations_logo.png', alt: 'Boiler Install 4 You', treatment: 'light-background' },
-  { src: '/sca_consultancy_logo.png', alt: 'SCA Consultancy', treatment: 'light-background' },
-  { src: '/sgs_security_logo.png', alt: 'SGS Security', treatment: 'light-background' },
-  { src: '/tenable_business_support_logo.jpg', alt: 'Tenable Business Support', treatment: 'dark-background' },
-  { src: '/moorcroft_consultants_logo.jpg', alt: 'Moorcroft Consultants', treatment: 'dark-background' },
-  { src: '/swift_heat_logo.jpg', alt: 'Swift Heat', treatment: 'dark-background' },
-  { src: '/re_roofs_direct_logo.jpg', alt: 'Re Roofs Direct', treatment: 'dark-background' },
-];
+// Partner logos for the homepage carousel.
+// Files live in /public/logos as white-on-transparent PNGs.
+// `height` balances visual weight (square marks sit taller than wide wordmarks).
+export type Partner = { name: string; logo: string; height: number; row: 'top' | 'bottom' };
 
-export const partnerLogos = [
-  ...partnerLogoList,
-  ...partnerLogoList,
+export const partners: Partner[] = [
+  { name: 'SCA Business Consultancy', logo: '/logos/sca-consultancy.png', height: 44, row: 'top' },
+  { name: 'Tenable Business Support', logo: '/logos/tenable-business-support.png', height: 40, row: 'top' },
+  { name: 'Call Cafe', logo: '/logos/call-cafe.png', height: 56, row: 'top' },
+  { name: 'Moorcroft Consultants', logo: '/logos/moorcroft-consultants.png', height: 36, row: 'top' },
+  { name: 'Prism Data', logo: '/logos/prism-data.png', height: 52, row: 'top' },
+  { name: 'SGS Security', logo: '/logos/sgs-security.png', height: 40, row: 'bottom' },
+  { name: 'Re-Roofs Direct', logo: '/logos/re-roofs-direct.png', height: 40, row: 'bottom' },
+  { name: 'Boiler Install 4 You', logo: '/logos/boiler-install-4-you.png', height: 36, row: 'bottom' },
+  { name: 'WRT', logo: '/logos/wrt.png', height: 54, row: 'bottom' },
+  { name: 'Swift Heat', logo: '/logos/swift-heat.png', height: 42, row: 'bottom' },
 ];
 
 export const heroAvatars = [

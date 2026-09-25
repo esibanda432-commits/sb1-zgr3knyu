@@ -25,11 +25,10 @@ export default function GoToMarketSystems() {
   return (
     <div className="pt-[88px]">
       <section className="section-space relative overflow-hidden">
-        <div className="glow -right-60 -top-40" />
         <div className="container relative">
           <p className="eyebrow mb-5">Go To Market Systems</p>
           <h1 className="display max-w-5xl text-5xl font-bold sm:text-6xl md:text-7xl">
-            One System. Deployed to acquire sales opportunities and convert them into revenue.
+            One System. Deployed to convert sales opportunities into revenue.
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 muted">
             We create demand, capture intent and convert it into booked revenue, all within one connected system.
@@ -37,33 +36,33 @@ export default function GoToMarketSystems() {
         </div>
       </section>
 
-      <section className="pb-28">
+      <section className="surface-light py-24 sm:py-28">
         <div className="container max-w-4xl">
           {layers.map((layer, i) => (
-            <div key={layer.number} className="relative pb-16">
+            <div key={layer.number} className={`relative ${i < 2 ? 'pb-16' : ''}`}>
               <div className="panel relative p-7 sm:p-10">
                 <div className="flex items-start justify-between gap-5">
                   <div>
                     <p className="eyebrow mb-3">Layer {layer.number}</p>
                     <h2 className="display text-3xl font-bold">{layer.title}</h2>
                   </div>
-                  <span className="text-3xl font-bold text-[#1d3848]">{layer.number}</span>
+                  <span className="text-3xl font-bold text-[#c3d3dc]">{layer.number}</span>
                 </div>
                 <p className="mt-4 max-w-xl muted">{layer.intro}</p>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
                   {layer.items.map(([Icon, label]) => (
-                    <div key={label} className="flex items-center gap-3 rounded-xl border border-white/[.07] bg-white/[.02] p-4 text-sm text-[#d8dce3]">
+                    <div key={label} className="flex items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--panel-2)] p-4 text-sm font-medium text-[var(--text)]">
                       <span className="icon-box h-9 w-9"><Icon size={17} /></span>
                       {label}
                     </div>
                   ))}
                 </div>
 
-                {i === 0 && <p className="mt-8 text-sm accent-text">We cover every channel so your ideal client doesn't miss you.</p>}
+                {i === 0 && <p className="mt-8 text-sm font-medium accent-text">We cover every channel so your ideal client doesn't miss you.</p>}
 
                 {i === 2 && (
-                  <div className="mt-10 overflow-hidden rounded-xl border border-white/[.1] bg-[#0b0d12] accent-glow-shadow">
+                  <div className="mt-10 overflow-hidden rounded-xl border border-black/10 bg-[#0b0d12] text-[#f5f6f8] shadow-xl">
                     <div className="flex items-center gap-2 border-b border-white/[.08] px-4 py-3">
                       <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
                       <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
@@ -77,7 +76,7 @@ export default function GoToMarketSystems() {
                       </div>
                       <div className="h-28 rounded-lg bg-[#141923] p-4">
                         <p className="text-[10px] text-[#697384]">OPEN OPPORTUNITIES</p>
-                        <p className="mt-4 text-2xl font-semibold accent-text">48</p>
+                        <p className="mt-4 text-2xl font-semibold text-[#3a9ec4]">48</p>
                       </div>
                       <div className="h-28 rounded-lg bg-[#141923] p-4">
                         <p className="text-[10px] text-[#697384]">CONVERSION</p>
@@ -96,7 +95,7 @@ export default function GoToMarketSystems() {
               </div>
 
               {i < 2 && (
-                <div className="absolute bottom-0 left-1/2 z-10 grid h-10 w-10 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border border-[var(--accent)]/40 bg-[#0a0b0f] accent-text">
+                <div className="absolute bottom-0 left-1/2 z-10 grid h-10 w-10 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border border-[var(--line)] bg-white accent-text shadow-sm">
                   <ArrowDown size={17} />
                 </div>
               )}
@@ -105,7 +104,7 @@ export default function GoToMarketSystems() {
         </div>
       </section>
 
-      <section className="container pb-24 text-center">
+      <section className="container py-24 text-center">
         <div className="mx-auto max-w-xl">
           <div className="icon-box mx-auto mb-5"><Zap size={18} /></div>
           <h2 className="display text-4xl font-bold">Deployed within 14 days</h2>

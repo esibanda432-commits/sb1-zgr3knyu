@@ -12,6 +12,7 @@ import { pageMeta, getBlogPostMeta, getStructuredData, getBreadcrumbs } from './
 
 export default function App() {
   const [path, setPath] = useState(window.location.pathname);
+  const [hashTick, setHashTick] = useState(0);
 
   const navigate = (next: string) => {
     if (next.startsWith('#')) {
@@ -21,8 +22,26 @@ export default function App() {
     const [pathname, hash] = next.split('#');
     window.history.pushState({}, '', pathname + (hash ? `#${hash}` : ''));
     setPath(pathname);
-    window.scrollTo(0, 0);
+    if (hash) setHashTick(t => t + 1);
+    else window.scrollTo(0, 0);
   };
+
+  // Jump to a section (e.g. /case-studies#sca-consultancy) once the page has rendered.
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    let tries = 0;
+    const tryScroll = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 104;
+        window.scrollTo({ top, behavior: tries === 0 && hashTick === 0 ? 'auto' : 'smooth' });
+      } else if (tries++ < 20) {
+        setTimeout(tryScroll, 50);
+      }
+    };
+    requestAnimationFrame(tryScroll);
+  }, [path, hashTick]);
 
   useEffect(() => {
     const onPop = () => setPath(window.location.pathname);

@@ -9,7 +9,7 @@ export default function Footer({ navigate }: FooterProps) {
       <div className="container py-16">
         <div className="grid gap-12 md:grid-cols-[1.3fr_1fr_1fr] pb-14">
           <div>
-            <img src="/Renvra_group_full_logo-removebg-preview.png" alt="Renvra Group" className="h-[56px] w-auto mb-5" />
+            <img src="/Renvra_group_logo_trimmed.png" alt="Renvra Group" className="h-[56px] mb-5 w-auto max-w-none" />
             <p className="max-w-sm text-sm leading-7 muted">We design and deploy go-to-market systems for businesses ready to create more predictable growth.</p>
           </div>
           <div>
