@@ -5,6 +5,11 @@ const partnerLogoList = [
   { src: '/WRT_logo.png', alt: 'WRT', treatment: 'light-background' },
   { src: '/prism_data_logo.png', alt: 'Prism Data', treatment: 'light-background' },
   { src: '/boiler_installations_logo.png', alt: 'Boiler Install 4 You', treatment: 'light-background' },
+  { src: '/sca_consultancy_logo.png', alt: 'SCA Consultancy', treatment: 'light-background' },
+  { src: '/sgs_security_logo.png', alt: 'SGS Security', treatment: 'light-background' },
+  { src: '/tenable_business_support_logo.jpg', alt: 'Tenable Business Support', treatment: 'dark-background' },
+  { src: '/moorcroft_consultants_logo.jpg', alt: 'Moorcroft Consultants', treatment: 'dark-background' },
+  { src: '/swift_heat_logo.jpg', alt: 'Swift Heat', treatment: 'dark-background' },
 ];
 
 export const partnerLogos = [
