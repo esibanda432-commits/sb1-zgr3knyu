@@ -1,5 +1,5 @@
 import { ArrowUpRight, Linkedin } from 'lucide-react';
-import { bookingUrl } from '../data/siteData';
+import { founderHeadshot } from '../data/siteData';
 
 export default function Leadership() {
   return (
@@ -14,7 +14,7 @@ export default function Leadership() {
             <div className="relative mx-auto w-full max-w-[360px]">
               <div className="glow -left-24 -top-20 h-80 w-80" />
               <img
-                src="/images/team/Emmanuel_headshot.jpeg"
+                src={founderHeadshot}
                 alt="Emmanuel Sibanda, Founder and CEO of Renvra Group"
                 className="relative aspect-[4/5] w-full rounded-2xl border border-white/[.12] object-cover"
                 style={{ maxWidth: '360px' }}

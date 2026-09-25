@@ -1,14 +1,14 @@
 export const bookingUrl = 'https://calendly.com/acquisition-renvra-group/30min';
 
 const partnerLogoList = [
-  { src: '/images/partners/call_cafe_logo.jpg', alt: 'Call Cafe', transparent: false },
-  { src: '/images/partners/WRT_logo.png', alt: 'WRT', transparent: true },
-  { src: '/images/partners/prism_data_logo.png', alt: 'Prism Data', transparent: true },
-  { src: '/images/partners/boiler_installations_logo.png', alt: 'Boiler Install 4 You', transparent: true },
-  { src: '/images/partners/tenable_business_support_logo.jpg', alt: 'Tenable Business Support', transparent: false },
-  { src: '/images/partners/re_roofs_direct_logo.jpg', alt: 'Re Roofs Direct', transparent: false },
-  { src: '/images/partners/sca_consultancy_logo.png', alt: 'SCA Consultancy', transparent: true },
-  { src: '/images/partners/moorcroft_consultants_logo.jpg', alt: 'Moorcroft Consultants', transparent: false },
+  { name: 'Call Cafe' },
+  { name: 'WRT' },
+  { name: 'Prism Data' },
+  { name: 'Boiler Install 4 You' },
+  { name: 'Tenable Business Support' },
+  { name: 'Re Roofs Direct' },
+  { name: 'SCA Consultancy' },
+  { name: 'Moorcroft Consultants' },
 ];
 
 export const partnerLogos = [
@@ -24,15 +24,19 @@ export const heroAvatars = [
   'https://images.pexels.com/photos/8090298/pexels-photo-8090298.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop',
 ];
 
+export const founderHeadshot = 'https://images.pexels.com/photos/36053652/pexels-photo-36053652.jpeg?auto=compress&cs=tinysrgb&w=450&h=560&fit=crop';
+
 const caseStudySlugs = ['sca-consultancy', 'tenable-business-support', 'sgs-security', 'the-cancer-conversation', 're-roofs-repair'];
 
 export const testimonials = [
-  ['CEO', 'SCA Consultancy', 'The campaign delivered a consistent flow of meetings with buyers who genuinely needed our services.', '29 meetings in 32 days'],
-  ['Director', 'Tenable Business Support', 'For the first time, we were consistently reaching the decision-makers we actually wanted to work with.', '23 meetings in 28 days'],
-  ['Managing Director', 'SGS Security', "Far stronger than any agency we've worked with before. The demand generated was more than we could handle.", '73 enquiries in 28 days'],
-  ['Founder', 'The Cancer Conversation', 'We turned a brand-new offer into real revenue within a matter of weeks.', '26 meetings in 30 days'],
-  ['Director', 'Re Roofs Repair', 'They understood exactly what we needed and went above and beyond to deliver it.', '3 jobs closed in 28 days'],
+  ['CEO', 'SCA Consultancy', 'The campaign delivered a consistent flow of meetings with buyers who genuinely needed our services.'],
+  ['Director', 'Tenable Business Support', 'For the first time, we were consistently reaching the decision-makers we actually wanted to work with.'],
+  ['Managing Director', 'SGS Security', "Far stronger than any agency we've worked with before. The demand generated was more than we could handle."],
+  ['Founder', 'The Cancer Conversation', 'We turned a brand-new offer into real revenue within a matter of weeks.'],
+  ['Director', 'Re Roofs Repair', 'They understood exactly what we needed and went above and beyond to deliver it.'],
 ] as const;
+
+export const featuredTestimonialIndices = [0, 1, 2];
 
 export const testimonialLinks = caseStudySlugs;
 
@@ -51,7 +55,7 @@ export const caseStudies = [
     headlineFigure: '29', headlineLabel: 'Meetings Booked', timeframe: '32 Days', timeframeNum: 32, icon: 'calendar',
     challenge: 'A strong service offer needed a sharper route into conversations with the right decision-makers.',
     deployed: 'A focused demand system with targeted outreach, a conversion asset and a simple qualification path.',
-    results: 'The team gained a repeatable flow of relevant conversations and clearer visibility across the pipeline.',
+    results: 'The team gained a repeatable flow of relevant conversations and clearer visibility across the pipeline, generating £76k in pipeline for that month.',
     quote: 'The campaign delivered a consistent flow of meetings with buyers who genuinely needed our services.',
   },
   {
@@ -59,15 +63,15 @@ export const caseStudies = [
     headlineFigure: '23', headlineLabel: 'Meetings Booked', timeframe: '28 Days', timeframeNum: 28, icon: 'calendar',
     challenge: 'Growth had been too dependent on referrals and inconsistent founder-led activity.',
     deployed: 'A structured outbound campaign, refined positioning and nurture sequence for warm prospects.',
-    results: 'More qualified conversations arrived with context already established, giving the sales team momentum.',
+    results: 'More qualified conversations arrived with context already established, giving the sales team momentum. The campaign added £42k in pipeline for that month.',
     quote: 'For the first time, we were consistently reaching the decision-makers we actually wanted to work with.',
   },
   {
     id: 'sgs-security', role: 'Managing Director', name: 'SGS Security', industry: 'Security services',
     headlineFigure: '73', headlineLabel: 'Student Enquiries', timeframe: '28 Days', timeframeNum: 28, icon: 'users',
-    challenge: 'The business needed to reach larger accounts without adding another layer of manual prospecting.',
+    challenge: 'The business needed to find more students within commuting distance who also had budget for their course.',
     deployed: 'Multi-channel demand creation paired with qualification and follow-up workflows.',
-    results: 'The quality of opportunities improved while the internal team spent more time in meaningful sales conversations.',
+    results: 'The quality of opportunities improved while the internal team spent more time in meaningful sales conversations, with 29 students booked for that month.',
     quote: "Far stronger than any agency we've worked with before. The demand generated was more than we could handle.",
   },
   {
@@ -75,14 +79,14 @@ export const caseStudies = [
     headlineFigure: '26', headlineLabel: 'Meetings Booked', timeframe: '30 Days', timeframeNum: 30, icon: 'calendar',
     challenge: 'A differentiated offer was not being seen consistently by the audiences it could help most.',
     deployed: 'Clearer messaging, demand capture pages and an intentional follow-up journey.',
-    results: 'The organisation built a more confident commercial rhythm without compromising its mission.',
+    results: 'The organisation built a more confident commercial rhythm without compromising its mission, generating £96k in pipeline.',
     quote: 'We turned a brand-new offer into real revenue within a matter of weeks.',
   },
   {
     id: 're-roofs-repair', role: 'Director', name: 'Re Roofs Repair', industry: 'Property services',
     headlineFigure: '3', headlineLabel: 'High-Ticket Jobs Closed', timeframe: '28 Days', timeframeNum: 28, icon: 'trophy',
     challenge: 'Inbound demand was difficult to predict and the team needed a reliable way to create new opportunities.',
-    deployed: 'Targeted prospecting, conversion-led assets and a practical pipeline review cadence.',
+    deployed: 'Targeted Meta Ads campaigns, conversion-led assets and a practical pipeline review cadence.',
     results: 'The business gained control over its opportunity flow and a process it could keep improving.',
     quote: 'They understood exactly what we needed and went above and beyond to deliver it.',
   },

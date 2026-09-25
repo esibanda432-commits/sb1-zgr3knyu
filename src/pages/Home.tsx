@@ -1,10 +1,12 @@
 import { ArrowRight, BarChart3, ChevronDown, MousePointer2, Plus, Quote, Target } from 'lucide-react';
-import { bookingUrl, faqs, partnerLogos, heroAvatars, testimonials, testimonialLinks } from '../data/siteData';
+import { bookingUrl, faqs, partnerLogos, heroAvatars, testimonials, testimonialLinks, featuredTestimonialIndices } from '../data/siteData';
 import SectionHeading from '../components/SectionHeading';
 
 interface Props { navigate: (path: string) => void; }
 
 export default function Home({ navigate }: Props) {
+  const featured = featuredTestimonialIndices.map(i => testimonials[i]);
+
   return (
     <div className="pt-[88px]">
       {/* SECTION 1 — HERO */}
@@ -15,7 +17,7 @@ export default function Home({ navigate }: Props) {
             <div className="flex items-center">
               {heroAvatars.map((src, i) => (
                 <img key={i} src={src} alt="" loading="lazy"
-                  className="h-7 w-7 rounded-full object-cover border-2 border-[#0a0b0f] sm:h-[27px] sm:w-[27px]"
+                  className="h-7 w-7 rounded-full object-cover border-2 border-[#0a0b0f]"
                   style={{ marginLeft: i === 0 ? 0 : '-10px' }} />
               ))}
             </div>
@@ -39,10 +41,11 @@ export default function Home({ navigate }: Props) {
       <section className="border-y border-white/[.07] py-10">
         <p className="mb-7 text-center text-xs uppercase tracking-[.2em] text-[#9aa0ab]">Companies that trust us to drive their revenue</p>
         <div className="relative overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-gradient-to-r before:from-[#0a0b0f] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-gradient-to-l after:from-[#0a0b0f] after:to-transparent">
-          <div className="flex w-max animate-[marquee_24s_linear_infinite] items-center gap-16">
+          <div className="flex w-max animate-[marquee_24s_linear_infinite] items-center gap-12">
             {partnerLogos.map((logo, i) => (
-              <img key={`${logo.alt}-${i}`} src={logo.src} alt={logo.alt} loading="lazy"
-                className={`h-9 w-auto max-w-[160px] object-contain ${logo.transparent ? 'partner-logo-transparent' : 'partner-logo-solid'}`} />
+              <span key={`${logo.name}-${i}`} className="text-lg font-bold tracking-tight text-[#7a8290] whitespace-nowrap transition-opacity duration-300 hover:text-[#c8ccd2]">
+                {logo.name}
+              </span>
             ))}
             <style>{'@keyframes marquee{to{transform:translateX(-50%)}}'}</style>
           </div>
@@ -52,7 +55,7 @@ export default function Home({ navigate }: Props) {
       {/* SECTION 3 — WHAT WE BUILD */}
       <section className="section-space">
         <div className="container">
-          <SectionHeading eyebrow="What We Build" title="One System. Deployed to acquire sales opportunities and convert them into revenue." body="We create demand, capture intent and convert it into booked revenue, all within one connected system." />
+          <SectionHeading eyebrow="What We Build" title="One System. Deployed to convert sales opportunities into revenue." body="We create demand, capture intent and convert it into booked revenue, all within one connected system." />
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {[
               [Target, '01', 'Create Demand', 'Reach the right people through a considered mix of channels.'],
@@ -75,26 +78,33 @@ export default function Home({ navigate }: Props) {
         </div>
       </section>
 
-      {/* SECTION 4 — TESTIMONIALS */}
+      {/* SECTION 4 — FEATURED CASE STUDIES */}
       <section className="section-space bg-[#0d0f14]">
         <div className="container">
           <SectionHeading eyebrow="Case Studies" title="Feedback From Client Work" />
-          <div className="mt-12 grid gap-4 md:grid-cols-6">
-            {testimonials.map(([role, company, quote, highlight], i) => (
-              <a key={company} href={`/case-studies#${testimonialLinks[i]}`}
-                className={`panel group p-7 transition-all hover:-translate-y-1 accent-hover-border ${i < 3 ? 'md:col-span-2' : 'md:col-span-2 md:mx-10'}`}>
-                <Quote className="mb-7 text-[#3a6a82]" size={23} />
-                <p className="min-h-24 text-lg leading-8 text-[#e7e9ed]">"{quote}"</p>
-                <div className="mt-8 border-t border-white/[.08] pt-5">
-                  <p className="text-sm font-semibold">{role}</p>
-                  <p className="text-sm muted">{company}</p>
-                  <p className="mt-4 text-xs font-semibold accent-text">{highlight}</p>
-                  <p className="mt-3 inline-flex items-center gap-1 text-xs text-[var(--accent-light)]">
-                    Read the case study <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-                  </p>
-                </div>
-              </a>
-            ))}
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {featured.map(([role, company, quote], fi) => {
+              const actualIndex = featuredTestimonialIndices[fi];
+              return (
+                <a key={company} href={`/case-studies#${testimonialLinks[actualIndex]}`}
+                  className="panel group p-7 transition-all hover:-translate-y-1 accent-hover-border flex flex-col">
+                  <Quote className="mb-6 text-[#3a6a82]" size={23} />
+                  <p className="flex-1 text-base leading-7 text-[#e7e9ed]">"{quote}"</p>
+                  <div className="mt-6 border-t border-white/[.08] pt-5">
+                    <p className="text-sm font-semibold">{role}</p>
+                    <p className="text-sm muted">{company}</p>
+                    <p className="mt-4 inline-flex items-center gap-1 text-xs text-[var(--accent-light)]">
+                      Read the case study <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+          <div className="mt-10 text-center">
+            <button onClick={() => navigate('/case-studies')} className="button-ghost">
+              View All Case Studies <ArrowRight size={16} />
+            </button>
           </div>
         </div>
       </section>

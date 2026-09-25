@@ -40,9 +40,6 @@ export default function CaseStudies() {
           <p className="eyebrow mb-5">Proof of work</p>
           <h1 className="display text-5xl font-bold sm:text-6xl">Case Studies</h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 muted">A selection of commercial systems built to create better conversations, stronger pipelines and more dependable growth.</p>
-          <div className="mt-10 flex flex-wrap gap-2">
-            {caseStudies.map(c => <a key={c.id} href={`#${c.id}`} className="button-ghost py-2 text-xs">{c.name}</a>)}
-          </div>
         </div>
       </section>
 
@@ -75,12 +72,10 @@ export default function CaseStudies() {
                 </div>
               </div>
 
-              <div className="flex flex-col justify-between gap-6 md:flex-row">
-                <div>
-                  <p className="eyebrow mb-3">{c.industry}</p>
-                  <h2 className="display text-3xl font-bold sm:text-4xl">{c.name}</h2>
-                  <p className="mt-2 text-sm muted">{c.role}</p>
-                </div>
+              <div>
+                <p className="eyebrow mb-3">{c.industry}</p>
+                <h2 className="display text-3xl font-bold sm:text-4xl">{c.name}</h2>
+                <p className="mt-2 text-sm muted">{c.role}</p>
               </div>
 
               <div className="grid gap-8 md:grid-cols-3 mt-8">
