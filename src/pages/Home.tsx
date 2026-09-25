@@ -42,7 +42,7 @@ export default function Home({ navigate }: Props) {
 
       {/* SECTION 2 — PARTNER LOGO CAROUSEL */}
       <section className="border-y border-white/[.07] py-14">
-        <p className="mb-9 text-center text-xs uppercase tracking-[.2em] text-[#9aa0ab]">Some of the businesses we have partnered with</p>
+        <p className="mb-9 text-center text-xs uppercase tracking-[.2em] text-[#9aa0ab]">Some of our partners</p>
         <div className="logo-marquee">
           {(['top', 'bottom'] as const).map(row => {
             const items = partners.filter(p => p.row === row);
