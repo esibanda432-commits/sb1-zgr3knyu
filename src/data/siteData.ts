@@ -1,14 +1,10 @@
 export const bookingUrl = 'https://calendly.com/acquisition-renvra-group/30min';
 
 const partnerLogoList = [
-  { name: 'Call Cafe' },
-  { name: 'WRT' },
-  { name: 'Prism Data' },
-  { name: 'Boiler Install 4 You' },
-  { name: 'Tenable Business Support' },
-  { name: 'Re Roofs Direct' },
-  { name: 'SCA Consultancy' },
-  { name: 'Moorcroft Consultants' },
+  { src: '/call_cafe_logo.jpg', alt: 'Call Cafe', treatment: 'dark-background' },
+  { src: '/WRT_logo.png', alt: 'WRT', treatment: 'light-background' },
+  { src: '/prism_data_logo.png', alt: 'Prism Data', treatment: 'light-background' },
+  { src: '/boiler_installations_logo.png', alt: 'Boiler Install 4 You', treatment: 'light-background' },
 ];
 
 export const partnerLogos = [
@@ -24,7 +20,7 @@ export const heroAvatars = [
   'https://images.pexels.com/photos/8090298/pexels-photo-8090298.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop',
 ];
 
-export const founderHeadshot = 'https://images.pexels.com/photos/36053652/pexels-photo-36053652.jpeg?auto=compress&cs=tinysrgb&w=450&h=560&fit=crop';
+export const founderHeadshot = '/Emmanuel_headshot.jpeg';
 
 const caseStudySlugs = ['sca-consultancy', 'tenable-business-support', 'sgs-security', 'the-cancer-conversation', 're-roofs-repair'];
 

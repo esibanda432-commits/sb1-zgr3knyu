@@ -43,9 +43,8 @@ export default function Home({ navigate }: Props) {
         <div className="relative overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-gradient-to-r before:from-[#0a0b0f] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-gradient-to-l after:from-[#0a0b0f] after:to-transparent">
           <div className="flex w-max animate-[marquee_24s_linear_infinite] items-center gap-12">
             {partnerLogos.map((logo, i) => (
-              <span key={`${logo.name}-${i}`} className="text-lg font-bold tracking-tight text-[#7a8290] whitespace-nowrap transition-opacity duration-300 hover:text-[#c8ccd2]">
-                {logo.name}
-              </span>
+              <img key={`${logo.alt}-${i}`} src={logo.src} alt={logo.alt} loading="lazy"
+                className={`h-10 w-auto max-w-[180px] object-contain ${logo.treatment === 'dark-background' ? 'partner-logo-dark-background' : 'partner-logo-light-background'}`} />
             ))}
             <style>{'@keyframes marquee{to{transform:translateX(-50%)}}'}</style>
           </div>

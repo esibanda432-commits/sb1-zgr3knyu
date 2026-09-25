@@ -68,19 +68,19 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .accent-hover-border:hover { border-color: rgba(40,128,164,.4); }
   .accent-glow-shadow { box-shadow: 0 0 50px rgba(40,128,164,.12); }
 
-  .partner-logo-transparent {
-    filter: grayscale(100%) brightness(0) invert(1);
-    opacity: .6;
-    transition: opacity .3s;
+  .partner-logo-dark-background {
+    filter: grayscale(100%);
+    mix-blend-mode: screen;
+    opacity: .7;
+    transition: opacity .3s, transform .3s;
   }
-  .partner-logo-transparent:hover { opacity: 1; }
-  .partner-logo-solid {
+  .partner-logo-light-background {
     filter: grayscale(100%) invert(100%);
     mix-blend-mode: screen;
-    opacity: .6;
-    transition: opacity .3s;
+    opacity: .7;
+    transition: opacity .3s, transform .3s;
   }
-  .partner-logo-solid:hover { opacity: 1; }
+  .partner-logo-dark-background:hover, .partner-logo-light-background:hover { opacity: 1; transform: translateY(-2px); }
 }
 @media (max-width: 640px) {
   .container { width: min(100% - 32px, 1160px); }
