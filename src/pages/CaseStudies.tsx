@@ -127,7 +127,11 @@ function Info({ title, text }: { title: string; text: string }) {
   return (
     <div>
       <h3 className="mb-3 text-sm font-semibold">{title}</h3>
-      <p className="text-sm leading-7 muted">{text}</p>
+      <p className="text-sm leading-7 muted">
+        {text.split(/(£[\d.,]+(?:k|m|K|M)?\+?)/).map((part, i) =>
+          i % 2 === 1 ? <strong key={i} className="font-semibold accent-text">{part}</strong> : part
+        )}
+      </p>
     </div>
   );
 }

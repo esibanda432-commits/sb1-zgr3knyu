@@ -4,9 +4,9 @@ import { bookingUrl } from '../data/siteData';
 const facts = [
   ['2024', 'Founded'],
   ['100+', 'Businesses served'],
-  ['14 days', 'To deploy a system'],
-  ['B2B & B2C', 'Markets served'],
+  ['£1M+', 'Pipeline generated'],
 ];
+const markets = ['Technology', 'Healthcare', 'Professional Services', 'Security', 'Home Services'];
 
 const values = [
   [Target, 'Results-driven', 'We judge our work by the revenue it produces, not the activity it generates.'],
@@ -33,6 +33,14 @@ export default function About() {
                 <dd className="display mt-2 text-3xl font-bold sm:text-4xl">{value}</dd>
               </div>
             ))}
+            <div className="bg-[var(--bg)] p-6 sm:p-8">
+              <dt className="text-xs muted">Markets served</dt>
+              <dd className="mt-3 flex flex-wrap gap-1.5">
+                {markets.map(m => (
+                  <span key={m} className="whitespace-nowrap rounded-full border border-[var(--line)] px-2.5 py-1 text-xs font-medium">{m}</span>
+                ))}
+              </dd>
+            </div>
           </dl>
         </div>
       </section>

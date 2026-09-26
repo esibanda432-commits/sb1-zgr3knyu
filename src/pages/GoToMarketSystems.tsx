@@ -1,11 +1,11 @@
-import { ArrowDown, ArrowRight, BarChart3, Bot, Check, FileText, Globe2, Linkedin, Mail, Megaphone, Search, Send, Users, Zap } from 'lucide-react';
+import { ArrowDown, ArrowRight, BarChart3, Check, FileText, Globe2, Linkedin, Mail, Megaphone, Phone, Search, Send, Users, Zap } from 'lucide-react';
 import { bookingUrl } from '../data/siteData';
 
 const layers = [
   {
     number: '01', title: 'Create Demand',
     intro: 'Reach the people who need you, wherever they are looking.',
-    items: [[Mail, 'Cold Email'], [Megaphone, 'Paid Advertising'], [Linkedin, 'LinkedIn Outreach'], [Search, 'SEO'], [Bot, 'Dialling Agents']] as const,
+    items: [[Mail, 'Cold Email'], [Megaphone, 'Paid Advertising'], [Linkedin, 'LinkedIn Outreach'], [Search, 'SEO'], [Phone, 'Dialling Agents']] as const,
   },
   {
     number: '02', title: 'Capture & Convert',
@@ -28,9 +28,6 @@ export default function GoToMarketSystems() {
           <h1 className="display max-w-5xl text-5xl font-bold sm:text-6xl md:text-7xl">
             One System. Deployed to convert sales opportunities into revenue.
           </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 muted">
-            We create demand, capture intent and convert it into revenue, all within one connected system.
-          </p>
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, BarChart3, MousePointer2, Plus, Quote, Target } from 'lucide-react';
+import { ArrowRight, BarChart3, MousePointer2, Plus, Star, Target } from 'lucide-react';
 import { bookingUrl, faqs, partners, heroAvatars, testimonials, testimonialLinks, featuredTestimonialIndices } from '../data/siteData';
 import SectionHeading from '../components/SectionHeading';
 import NavLink from '../components/NavLink';
@@ -103,7 +103,9 @@ export default function Home({ navigate }: Props) {
                 <a key={company} href={`/case-studies#${testimonialLinks[actualIndex]}`}
                   onClick={e => { e.preventDefault(); navigate(`/case-studies#${testimonialLinks[actualIndex]}`); }}
                   className="panel group p-7 transition-all hover:-translate-y-1 accent-hover-border flex flex-col">
-                  <Quote className="mb-6 text-[#3a6a82]" size={23} />
+                  <div className="mb-6 flex gap-1" role="img" aria-label="Rated 5 out of 5">
+                    {[0, 1, 2, 3, 4].map(n => <Star key={n} size={17} fill="#F5B83D" stroke="#F5B83D" />)}
+                  </div>
                   <p className="flex-1 text-base leading-7 text-[#e7e9ed]">"{quote}"</p>
                   <div className="mt-6 border-t border-white/[.08] pt-5">
                     <p className="text-sm font-semibold">{role}</p>
