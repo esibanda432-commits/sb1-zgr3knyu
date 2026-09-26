@@ -6,7 +6,7 @@ const distDir = join(process.cwd(), 'dist');
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8');
 
 const routes = [
-  { path: '/', title: 'Renvra Group | GTM Systems, Automation & Lead Generation', description: 'Renvra Group builds Go-To-Market systems that generate demand, capture intent and convert it into booked revenue. Deployed within 14 days.' },
+  { path: '/', title: 'Renvra Group | GTM Systems, Automation & Lead Generation', description: 'Renvra Group builds Go-To-Market systems that generate demand, capture intent and convert it into revenue. Deployed within 14 days.' },
   { path: '/go-to-market-systems', title: 'Go To Market Systems | Renvra Group', description: 'One connected system to create demand, capture intent and convert opportunities into revenue.' },
   { path: '/leadership', title: 'Company Leadership | Renvra Group', description: 'Meet the leadership behind Renvra Group.' },
   { path: '/case-studies', title: 'Case Studies | Renvra Group', description: 'See how Renvra Group builds systems for better conversations and stronger pipelines.' },
