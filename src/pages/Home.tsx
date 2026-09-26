@@ -25,7 +25,7 @@ export default function Home({ navigate }: Props) {
                   style={{ marginLeft: i === 0 ? 0 : '-17px', zIndex: heroAvatars.length - i }} />
               ))}
             </div>
-            <span>100+ Businesses Served</span>
+            <span data-nosnippet>100+ Businesses Served</span>
           </div>
           <h1 className="display reveal mx-auto max-w-5xl text-5xl font-bold sm:text-6xl md:text-8xl">
             Go To Market Systems <span className="accent-text">For Businesses Ready to Scale</span>
