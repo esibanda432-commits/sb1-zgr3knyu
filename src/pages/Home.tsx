@@ -3,6 +3,7 @@ import { ArrowRight, BarChart3, MousePointer2, Plus, Star, Target } from 'lucide
 import { bookingUrl, faqs, partners, heroAvatars, testimonials, testimonialLinks, featuredTestimonialIndices } from '../data/siteData';
 import SectionHeading from '../components/SectionHeading';
 import NavLink from '../components/NavLink';
+import StatsBand from '../components/StatsBand';
 
 interface Props { navigate: (path: string) => void; }
 
@@ -39,6 +40,9 @@ export default function Home({ navigate }: Props) {
           </div>
         </div>
       </section>
+
+      {/* KEY FIGURES */}
+      <StatsBand />
 
       {/* SECTION 2 — PARTNER LOGO CAROUSEL */}
       <section className="border-y border-white/[.07] py-14">
