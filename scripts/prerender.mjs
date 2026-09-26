@@ -14,14 +14,13 @@ const routes = [
   { path: '/about', title: 'About Us | Renvra Group', description: 'Learn about Renvra Group and our approach to building dependable growth systems.' },
 ];
 
-const blogPosts = [
-  { slug: 'the-modern-b2b-growth-system', title: 'The modern B2B growth system' },
-  { slug: 'why-outbound-should-feel-more-like-infrastructure', title: 'Why outbound should feel more like infrastructure' },
-  { slug: 'a-practical-guide-to-finding-your-best-fit-accounts', title: 'A practical guide to finding your best-fit accounts' },
-  { slug: 'the-customer-journey-is-the-product', title: 'The customer journey is the product' },
-  { slug: 'how-to-make-every-enquiry-count', title: 'How to make every enquiry count' },
-  { slug: 'building-trust-before-the-first-conversation', title: 'Building trust before the first conversation' },
-];
+// Read titles and excerpts straight from src/data/posts.ts, so new articles are prerendered automatically.
+const postsSource = readFileSync(join(process.cwd(), 'src/data/posts.ts'), 'utf-8');
+const blogPosts = [...postsSource.matchAll(/title: '([^']+)',\s*excerpt: '([^']+)'/g)].map(([, title, excerpt]) => ({
+  slug: title.toLowerCase().replace(/ /g, '-'),
+  title,
+  excerpt,
+}));
 
 const NAV = [
   ['Go To Market Systems', '/go-to-market-systems'],
@@ -116,7 +115,7 @@ for (const post of blogPosts) {
   writeFileSync(join(postDir, 'index.html'), generatePage({
     path: postPath,
     title: `${post.title} | Renvra Group`,
-    description: 'A considered look at the systems, decisions and commercial habits that create dependable growth.',
+    description: post.excerpt,
   }));
   console.log(`Prerendered: ${postPath}`);
 }
