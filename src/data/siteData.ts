@@ -95,15 +95,4 @@ export const caseStudies = [
   },
 ];
 
-export const posts = [
-  ...['The modern B2B growth system', 'Why outbound should feel more like infrastructure', 'A practical guide to finding your best-fit accounts'].map((title, i) => ({
-    slug: title.toLowerCase().replace(/ /g, '-'), category: 'B2B', title,
-    excerpt: 'A considered look at the systems, decisions and commercial habits that create dependable growth.',
-    date: `${12 + i} September 2026`, readTime: '6 min read',
-  })),
-  ...['The customer journey is the product', 'How to make every enquiry count', 'Building trust before the first conversation'].map((title, i) => ({
-    slug: title.toLowerCase().replace(/ /g, '-'), category: 'B2C', title,
-    excerpt: 'Useful thinking for businesses that want better customer experiences and stronger conversion.',
-    date: `${4 + i} August 2026`, readTime: '5 min read',
-  })),
-];
+export { posts } from './posts';
