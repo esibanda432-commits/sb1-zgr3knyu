@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 
-const TARGET = 1_000_000;
-const DURATION = 1800; // ms
+const TARGET = 5_000_000;
+const DURATION = 3000; // ms — counts up over 3 seconds
 
 function formatPipeline(value: number) {
-  if (value >= TARGET) return '£1M+';
+  if (value >= TARGET) return '£5M+';
+  if (value >= 1_000_000) return `£${Math.min(value / 1_000_000, 4.9).toFixed(1)}M`;
   return `£${Math.min(Math.round(value / 1000), 999)}k`;
 }
 
-// Pipeline figure counts rapidly from £0 to £1M+ when scrolled into view, then pulses.
+// Pipeline figure counts rapidly from £0 to £5M+ when scrolled into view, then pulses.
 function PipelineCounter() {
   const ref = useRef<HTMLSpanElement>(null);
   const [value, setValue] = useState(0);
@@ -39,7 +40,7 @@ function PipelineCounter() {
   }, []);
 
   return (
-    <span ref={ref} className={`stat-figure ${done ? 'is-pulsing' : ''}`} aria-label="£1M+">
+    <span ref={ref} className={`stat-figure ${done ? 'is-pulsing' : ''}`} aria-label="£5M+">
       {formatPipeline(value)}
     </span>
   );

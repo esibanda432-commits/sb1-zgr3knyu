@@ -4,7 +4,7 @@ import { bookingUrl } from '../data/siteData';
 const facts = [
   ['2024', 'Founded'],
   ['100+', 'Businesses served'],
-  ['£1M+', 'Pipeline generated'],
+  ['£5M+', 'Pipeline generated'],
 ];
 const markets = ['Technology', 'Healthcare', 'Professional Services', 'Security', 'Home Services'];
 
